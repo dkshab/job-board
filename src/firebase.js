@@ -3,14 +3,6 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage";
 
-// REACT_APP_API_KEY = "AIzaSyCEVx42eBPngd7OcFyjUjb_AW1NWJwoTq0";
-// REACT_APP_AUTHDOMAIN = "job-board-6439c.firebaseapp.com";
-// REACT_APP_DATABASE_URL = "https://job-board-6439c.firebaseio.com";
-// REACT_APP_PROJECT_ID = "job-board-6439c";
-// REACT_APP_STORAGE_BUCKET = "job-board-6439c.appspot.com";
-// REACT_APP_MESSAGING_SENDER_ID = "605618059405";
-// REACT_APP_APP_ID = "1:605618059405:web:04cf199d4dcb25873b4ac4";
-
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
