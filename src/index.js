@@ -7,12 +7,15 @@ import "./index.css";
 // import * as serviceWorker from "./serviceWorker";
 import Application from "./apps/Application";
 import UserProvider from "./providers/UserProvider";
+import JobsProvider from "./providers/JobsProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <UserProvider>
-        <Application />
+        <JobsProvider>
+          <Application />
+        </JobsProvider>
       </UserProvider>
     </Router>
   </React.StrictMode>,

@@ -38,13 +38,13 @@ const NavBar = () => {
             <Link to={ROUTES.ABOUT}>About</Link>
           </li>
           <li className="item">
-            <Link to={ROUTES.HOME}>Blog</Link>
+            <Link to={ROUTES.JOBS}>Jobs</Link>
           </li>
           <li className="item">
             <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
           <li className="item button post-job">
-            <Link to={ROUTES.HOME}>Post a Job</Link>
+            <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
           </li>
           &nbsp;
           <li className="item button sign-up">
@@ -56,7 +56,7 @@ const NavBar = () => {
               Sign Out
             </button>
           </li>
-          &nbsp;
+          &nbsp;&nbsp;
         </ul>
       </nav>
       {/* eslint-disable-next-line */}
