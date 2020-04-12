@@ -10,6 +10,7 @@ import Home from "../components/Home";
 import SignInAndSignUp from "../components/SignInAndSignUp";
 import JobsList from "../components/JobsList";
 import AddJob from "../components/AddJob";
+import Search from "../components/Search";
 
 const Application = () => {
   return (
@@ -20,6 +21,7 @@ const Application = () => {
         <Route exact path={ROUTES.SIGNIN} component={SignInAndSignUp} />
         <Route exact path={ROUTES.JOBS} component={JobsList} />
         <Route exact path={ROUTES.ADD_JOB} component={AddJob} />
+        <Route exact path={ROUTES.SEARCH} component={Search} />
       </main>
       <footer>Footer</footer>
     </div>

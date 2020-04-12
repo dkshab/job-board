@@ -115,3 +115,39 @@ button,
 //     grid-row: 3 / 4;
 //   }
 // }
+
+.JobCard {
+  border-radius: 3px;
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3cabbb;
+  }
+  .content {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.Search {
+  position: relative;
+  display: flex;
+  .searchTerm {
+    border: 3px solid #00b4cc;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9dbfaf;
+  }
+  .searchButton {
+    width: 40px;
+    height: 2.75rem;
+  }
+}

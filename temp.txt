@@ -1,0 +1,1 @@
+firebase functions:config:set algolia.api_key="a17758232951c6c1f989f9e3f9a89138" algolia.app_id="N0A57B25NW" algolia.search_key="a6b841e495d9dcc2bd90c16b529c9c20"
