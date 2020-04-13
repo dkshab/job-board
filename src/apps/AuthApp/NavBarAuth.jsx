@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { signOut } from "../firebase";
+import { signOut } from "../../firebase";
 
-import * as ROUTES from "../constants/routes";
+import * as ROUTES from "../../constants/routes";
 
 const NavBar = () => {
   return (
@@ -53,10 +53,6 @@ const NavBar = () => {
           </li>
           <li className="item button post-job">
             <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
-          </li>
-          &nbsp;
-          <li className="item button sign-up">
-            <Link to={ROUTES.SIGNIN}>Sign Up</Link>
           </li>
           &nbsp;
           <li className="item">

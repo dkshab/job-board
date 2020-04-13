@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { signOut } from "../firebase";
+import * as ROUTES from "../../constants/routes";
 
-import * as ROUTES from "../constants/routes";
-
-const NavBar = () => {
+const NavBarNonAuth = () => {
   return (
     <header className="NavBar">
       <a
@@ -48,21 +46,9 @@ const NavBar = () => {
           <li className="item">
             <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
-          <li className="item">
-            <Link to={ROUTES.PROFILE}>Profile</Link>
-          </li>
-          <li className="item button post-job">
-            <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
-          </li>
           &nbsp;
           <li className="item button sign-up">
             <Link to={ROUTES.SIGNIN}>Sign Up</Link>
-          </li>
-          &nbsp;
-          <li className="item">
-            <button onClick={signOut} className="button sign-out">
-              Sign Out
-            </button>
           </li>
           &nbsp;&nbsp;
         </ul>
@@ -73,4 +59,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBarNonAuth;

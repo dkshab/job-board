@@ -1,33 +1,24 @@
-import React from "react";
+import React, { useContext, Suspense } from "react";
 import { Route } from "react-router-dom";
+
+import { UserContext } from "../providers/UserProvider";
 
 import "../sass/styles.scss";
 
-import * as ROUTES from "../constants/routes";
+import Spinner from "../components/Spinner";
 
-import NavBar from "../components/NavBar";
-import Home from "../components/Home";
-import SignInAndSignUp from "../components/SignInAndSignUp";
-import AddJob from "../components/AddJob";
-import Search from "../components/Search";
-import JobPage from "../components/jobs/JobPage";
-import JobsList from "../components/jobs/JobsList";
+const AuthenticatedApp = React.lazy(() => import("./AuthApp/AuthApp"));
+const NonAuthenticatedApp = React.lazy(() => import("./NonAuthApp/NonAuthApp"));
 
-const Application = () => {
+function Application() {
+  const user = useContext(UserContext);
   return (
-    <div className="wrapper">
-      <NavBar />
-      <main className="main">
-        <Route exact path={ROUTES.HOME} component={Home} />
-        <Route exact path={ROUTES.SIGNIN} component={SignInAndSignUp} />
-        <Route exact path={ROUTES.JOBS} component={JobsList} />
-        <Route exact path={ROUTES.ADD_JOB} component={AddJob} />
-        <Route exact path={ROUTES.SEARCH} component={Search} />
-        <Route exact path={ROUTES.JOBPAGE} component={JobPage} />
-      </main>
-      <footer>Footer</footer>
-    </div>
+    <>
+      <Suspense fallback={<Spinner />}>
+        {user ? <AuthenticatedApp /> : <NonAuthenticatedApp />}
+      </Suspense>
+    </>
   );
-};
+}
 
 export default Application;
