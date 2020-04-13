@@ -8,10 +8,10 @@ import * as ROUTES from "../constants/routes";
 import NavBar from "../components/NavBar";
 import Home from "../components/Home";
 import SignInAndSignUp from "../components/SignInAndSignUp";
-import JobsList from "../components/JobsList";
 import AddJob from "../components/AddJob";
 import Search from "../components/Search";
 import JobPage from "../components/jobs/JobPage";
+import JobsList from "../components/jobs/JobsList";
 
 const Application = () => {
   return (

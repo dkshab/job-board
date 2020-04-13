@@ -12,6 +12,15 @@
     color: #c85028;
   }
 }
+.logo {
+  a {
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: inherit;
+  }
+}
 
 .nav-menu {
   margin-top: 2rem;

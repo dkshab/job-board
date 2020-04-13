@@ -15,9 +15,7 @@ class JobsProvider extends Component {
 
     const jobs = snapshot.docs.map(collectIdsAndData);
 
-    this.setState({ jobs }, () => {
-      console.log(jobs);
-    });
+    this.setState({ jobs });
   };
 
   componentWillUnmount() {

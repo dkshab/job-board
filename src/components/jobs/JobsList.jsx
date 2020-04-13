@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import { JobsContext } from "../providers/JobsProvider";
-import JobCard from "./jobs/JobCard";
+import { JobsContext } from "../../providers/JobsProvider";
+import Job from "./Job";
 
 const JobsList = () => {
   const jobs = useContext(JobsContext);
@@ -10,7 +10,7 @@ const JobsList = () => {
   return (
     <div className="JobsList">
       {jobs.map((job) => (
-        <JobCard {...job} key={job.id} />
+        <Job {...job} key={job.id} />
       ))}
     </div>
   );

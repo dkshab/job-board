@@ -18,7 +18,9 @@ const NavBar = () => {
         <span className="fa fa-bars" aria-hidden="true"></span>
       </a>
       <div className="logo">
-        <h1>jobHunt.io</h1>
+        <Link to={ROUTES.HOME}>
+          <h1>jobHunt.io</h1>
+        </Link>
       </div>
       <nav id="nav-menu" className="nav-menu" aria-label="Nav menu">
         <a

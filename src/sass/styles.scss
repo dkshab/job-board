@@ -1,5 +1,6 @@
-@import "_nav";
 @import "_variables";
+@import "_nav";
+@import "_jobs";
 
 @mixin button($color) {
   background-color: $color;
@@ -116,25 +117,6 @@ button,
 //   }
 // }
 
-.JobCard {
-  border-radius: 3px;
-  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.25);
-  background: #fff;
-  margin-bottom: 1rem;
-  padding: 1rem;
-
-  .title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #3cabbb;
-  }
-  .content {
-    font-size: 18px;
-    font-weight: 300;
-    color: rgba(0, 0, 0, 0.75);
-  }
-}
-
 .Search {
   position: relative;
   display: flex;
@@ -151,21 +133,3 @@ button,
     height: 2.75rem;
   }
 }
-
-// .Home {
-//   display: flex;
-//   .left-panel {
-//     background-color: lightsalmon;
-//   }
-//   .right-panel {
-//     background-color: lightsteelblue;
-//   }
-//   .ais-SearchBox-form {
-//     display: flex;
-//     button {
-//       height: 2.75rem;
-//       width: 3rem;
-//       font: 2rem;
-//     }
-//   }
-// }
