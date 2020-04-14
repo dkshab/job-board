@@ -1,28 +1,35 @@
-import React, { Component } from "react";
-import withUser from "../providers/withUser";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
-class UserProfile extends Component {
-  state = { user: null };
+import { UserContext } from "../providers/UserProvider";
+import * as ROUTES from "../constants/routes";
 
-  componentDidMount() {
-    const { user } = this.props;
-    //console.log(this.props);
-
-    this.setState({ user }, () => {
-      console.log(this.state.user);
-    });
-  }
-  render() {
-    console.log(this.state.user);
-    return (
-      <div className="UserProfile">
-        <div className="Profile--avatar"></div>
-        <div className="Profile--username"></div>
-        <p className="Profile--bio">Is a person</p>
-        <p>Update details</p>
+const UserProfile = () => {
+  const user = useContext(UserContext);
+  return (
+    <div className="UserProfile">
+      <div className="Profile--avatar">
+        {user.photoURL && <img src={user.photoURL} alt={user.displayName} />}
       </div>
-    );
-  }
-}
+      <div className="UserProfile--username">
+        <h2>{user.displayName}</h2>
+        <p>
+          <span>6</span> posts
+        </p>
+        <p>
+          <span>22</span> followers
+        </p>
+        <p>
+          <span>1999</span> following
+        </p>
+      </div>
+      <p className="UserProfile--bio">Is a person</p>
 
-export default withUser(UserProfile);
+      <Link to={ROUTES.UPDATE_PROFILE}>
+        <p>Update details</p>
+      </Link>
+    </div>
+  );
+};
+
+export default UserProfile;

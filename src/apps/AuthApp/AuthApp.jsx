@@ -11,6 +11,7 @@ import AddJob from "../../components/AddJob";
 import Search from "../../components/Search";
 import JobPage from "../../components/jobs/JobPage";
 import UserProfile from "../../components/UserProfile";
+import UpdateProfile from "./UpdateProfile";
 
 const AuthApp = () => {
   return (
@@ -24,6 +25,7 @@ const AuthApp = () => {
         <Route exact path={ROUTES.SEARCH} component={Search} />
         <Route exact path={ROUTES.JOBPAGE} component={JobPage} />
         <Route exact path={ROUTES.PROFILE} component={UserProfile} />
+        <Route exact path={ROUTES.UPDATE_PROFILE} component={UpdateProfile} />
       </main>
       <footer>Footer</footer>
     </div>

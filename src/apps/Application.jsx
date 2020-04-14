@@ -1,5 +1,4 @@
 import React, { useContext, Suspense } from "react";
-import { Route } from "react-router-dom";
 
 import { UserContext } from "../providers/UserProvider";
 

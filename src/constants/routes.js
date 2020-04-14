@@ -6,6 +6,7 @@ export const HOME = "/";
 export const ABOUT = "/about";
 export const ACCOUNT = "/account";
 export const PROFILE = "/profile";
+export const UPDATE_PROFILE = "/update-profile";
 export const ADMIN = "/admin";
 export const JOBS = "/jobs";
 export const ADD_JOB = "/add-job";
