@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { firestore } from "../firebase";
-import withUser from "../providers/withUser";
+import { withRouter } from "react-router-dom";
+
+import { firestore } from "../../firebase";
+import withUser from "../../providers/withUser";
+import * as ROUTES from "../../constants/routes";
 
 class AddJob extends Component {
   state = { title: "", description: "", company: "", type: "", location: "" };
@@ -16,6 +19,7 @@ class AddJob extends Component {
 
     const { title, description, company, type, location } = this.state;
     const { user } = this.props;
+    const recruiter = user;
 
     const job = {
       title,
@@ -23,7 +27,7 @@ class AddJob extends Component {
       company,
       type,
       location,
-      user,
+      recruiter,
       createdAt: new Date(),
     };
 
@@ -31,17 +35,23 @@ class AddJob extends Component {
 
     const resp = await firestore.collection("jobs").add(job);
     console.log(resp.id);
-    this.setState({
-      title: "",
-      description: "",
-      company: "",
-      type: "",
-      location: "",
-    });
+    this.setState(
+      {
+        title: "",
+        description: "",
+        company: "",
+        type: "",
+        location: "",
+      },
+      () => {
+        this.props.history.push(ROUTES.PROFILE);
+      }
+    );
   };
 
   render() {
     const { title, description, company, type, location } = this.state;
+    //console.log(this.props);
 
     return (
       <div className="AddJob">
@@ -97,4 +107,4 @@ class AddJob extends Component {
   }
 }
 
-export default withUser(AddJob);
+export default withRouter(withUser(AddJob));

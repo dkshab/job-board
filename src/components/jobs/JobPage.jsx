@@ -20,9 +20,7 @@ class JobPage extends Component {
   componentDidMount = async () => {
     this.unsubscribeFromJob = this.jobRef.onSnapshot((snapshot) => {
       const job = collectIdsAndData(snapshot);
-      this.setState({ job }, () => {
-        console.log(job);
-      });
+      this.setState({ job });
     });
   };
 

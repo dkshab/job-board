@@ -7,11 +7,11 @@ import SignInAndSignUp from "../../components/SignInAndSignUp";
 import NavBarAuth from "./NavBarAuth";
 import Home from "../../components/Home";
 import JobsList from "../../components/jobs/JobsList";
-import AddJob from "../../components/AddJob";
 import Search from "../../components/Search";
 import JobPage from "../../components/jobs/JobPage";
 import UserProfile from "../../components/UserProfile";
 import UpdateProfile from "./UpdateProfile";
+import AddJob from "../../components/jobs/AddJob";
 
 const AuthApp = () => {
   return (
