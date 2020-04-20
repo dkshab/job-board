@@ -5,7 +5,57 @@ import { storage, auth, firestore } from "../../firebase";
 import * as ROUTES from "../../constants/routes";
 
 class UpdateProfile extends Component {
-  state = { displayName: "" };
+  state = {
+    personalDetails: {
+      displayName: "",
+      gender: "",
+      title: "",
+      ethnicity: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      citizenShip: "",
+      southAfricanID: "",
+      DOB: "",
+      willingToRelocate: "",
+      currentCity: "",
+      disability: "",
+      introduction: "",
+      allowViewProfile: "",
+    },
+    workExperience: [
+      {
+        jobTitle: "",
+        companyName: "",
+        startDate: "",
+        endDate: "",
+        industry: "",
+      },
+    ],
+    education: [
+      {
+        graduationYear: "",
+        institution: "",
+        studyField: "",
+        qualification: "",
+      },
+    ],
+    skillsList: [{ skill: "", skillLevel: "" }],
+    languagesList: [{ language: "", languageLevel: "" }],
+    desiredJob: [
+      {
+        desiredJobLocation: "",
+        desiredJobTitle: "",
+        desiredJobCategory: "",
+        desiredWorkType: "",
+        desiredJobStatus: "",
+        salaryRange: "",
+      },
+    ],
+    noticePeriod: "",
+    currentSalary: "",
+  };
   imageInput = null;
 
   get uid() {
@@ -51,11 +101,41 @@ class UpdateProfile extends Component {
   };
 
   render() {
-    const { displayName } = this.state;
+    const { displayName, gender, title, ethnicity } = this.state;
 
     return (
       <div className="UpdateProfile">
         <form onSubmit={this.handleSubmit}>
+          <label htmlFor="gender">Gender</label>
+          <select name="gender" onChange={this.handleChange} value={gender}>
+            <option defaultValue>Select one...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <label htmlFor="title">Title</label>
+          <select name="title" onChange={this.handleChange} value={title}>
+            <option defaultValue>Select one...</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Dr">Dr</option>
+            <option value="Hon">Hon</option>
+            <option value="Rev">Rev</option>
+          </select>
+          <label htmlFor="ethnicity">Ethnicity</label>
+          <select
+            name="ethnicity"
+            onChange={this.handleChange}
+            value={ethnicity}
+          >
+            <option defaultValue>Select one...</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Asian">Asian</option>
+            <option value="Indian">Indian</option>
+            <option value="Colored">Colored</option>
+          </select>
+          <label htmlFor="first-name">First Name</label>
           <input
             type="text"
             value={displayName}

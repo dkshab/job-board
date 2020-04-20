@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* [class*="Profile--"] {
+  --columns: 12;
+  --width: 0;
+  border: 1px dotted magenta;
+  flex-basis: calc(var(--width) / var(--columns) * 100%);
+} */
+
+.Profile {
+  width: 50vw;
+  margin: 0 auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  --columns: 16;
+}
+
+.item1,
+.item2 {
+  --width: 16;
+  --initialbasis: calc(var(--width, 0) / var(--columns, 16) * 100%);
+  flex-basis: var(--initialbasis);
+}
+
+@media (min-width: 740px) {
+  .flex {
+    --columns: 11;
+  }
+  .item1 {
+    --width: 3;
+  }
+  .item2 {
+    --width: 8;
+  }
 }
