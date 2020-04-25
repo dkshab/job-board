@@ -13,66 +13,39 @@ const initialState = {
   email: "dumisani888@gmail.com",
   jobTitle: "Fancy title",
   companyName: "",
-  graduationYear: "",
   skillsTitle: "",
   languageTitle: "",
 };
 
-// REGEX
-const wrkExpRe = /jobTitle/;
-const educationRE = /graduationYear/;
-const skillsRE = /skillsTitle/;
-const languageRE = /languageTitle/;
-
-// Lists
-const wrkExpArr = [];
-const educationArr = [];
-const skillsArr = [];
-const languagesArr = [];
-
 const TestProfile = () => {
   const [state, setState] = useSetState(initialState);
   const [loading, setLoading] = useState(true);
-  const [addSection, setAddSection] = useState(false);
+
+  // Work experience
+  const blankWrkExp = { jobTitle: "" };
+  const [wrkExpState, setWrkExpState] = useState([{ ...blankWrkExp }]);
+
+  // Education
+  const blankEdu = { graduationYear: "" };
+  const [eduState, setEduState] = useState([{ ...blankEdu }]);
+
+  // Skills
+  const blankSkill = { skillTitle: "" };
+  const [skillState, setSkillState] = useState([{ ...blankSkill }]);
+
+  // Languages
+  const blankLanguage = { languageTitle: "" };
+  const [languagesState, setLanguagesState] = useState([{ ...blankLanguage }]);
 
   const user = useContext(UserContext);
   useEffect(() => {
     if (user && loading) {
-      console.log("We have a user!", user);
+      //console.log("We have a user!", user);
 
       setState(user);
       setLoading(false);
     }
   }, [loading, setState, user]);
-
-  // const myLoader = Object.keys(state).map((val, index) => {
-  //   if (wrkExpRe.test(val)) {
-  //     wrkExpArr.push(val);
-  //   } else if (educationRE.test(val)) {
-  //     educationArr.push(val);
-  //   } else if (skillsRE.test(val)) {
-  //     skillsArr.push(val);
-  //   } else if (languageRE.test(val)) {
-  //     languagesArr.push(val);
-  //   }
-  //   return setLoading(false);
-  // });
-
-  useEffect(() => {
-    if (addSection) {
-      console.log("We are adding a section!");
-    }
-  }, [addSection]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    clear();
-  };
-
-  const clear = () => {
-    setState(initialState);
-  };
 
   const handleChange = (event) => {
     setState({
@@ -82,64 +55,59 @@ const TestProfile = () => {
 
   const addWrkExp = (event) => {
     event.preventDefault();
-    setAddSection(true);
-    let countWrkExp = 0;
-    let obj = {};
 
-    Object.keys(state).map((val, index) => {
-      if (wrkExpRe.test(val)) {
-        countWrkExp++;
-        obj["jobTitle-" + countWrkExp] = "";
-        obj["companyName-" + countWrkExp] = "";
-      }
-      return true;
-    });
-    setState(obj);
+    let tempJob = {};
+    let testWrkExp = Object.keys(wrkExpState);
+    let countWrkExp = testWrkExp.length;
+
+    tempJob["jobTitle" + countWrkExp] = "";
+    setWrkExpState([...wrkExpState, { ...tempJob }]);
   };
 
   const addEdu = (event) => {
     event.preventDefault();
-    let countEducation = 0;
-    let objEducation = {};
 
-    Object.keys(state).map((val, index) => {
-      if (educationRE.test(val)) {
-        countEducation = countEducation + 1;
-        objEducation["graduationYear-" + countEducation] = "";
-        objEducation["tracking"] = countEducation + 1;
-      }
-      return true;
-    });
-    setState(objEducation);
+    const tempEdu = {};
+    const tempEduState = Object.keys(eduState);
+    const countEducation = tempEduState.length;
+
+    tempEdu["graduationYear" + countEducation] = "";
+
+    setEduState([...eduState, { ...tempEdu }]);
   };
+
   const addSkills = (event) => {
     event.preventDefault();
-    let countSkills = 0;
-    let objSkills = {};
 
-    Object.keys(state).map((val, index) => {
-      if (skillsRE.test(val)) {
-        countSkills = countSkills + 1;
-        objSkills["skillsTitle-" + countSkills] = "";
-      }
-      return true;
-    });
-    setState(objSkills);
-    //console.log(state);
+    const tempSkill = {};
+    const tempSkillState = Object.keys(skillState);
+    const countSkill = tempSkillState.length;
+
+    tempSkill["skillTitle" + countSkill] = "";
+
+    setSkillState([...skillState, { ...tempSkill }]);
   };
+
   const addLanguages = (event) => {
     event.preventDefault();
-    let countLanguages = 0;
-    let objLanguages = {};
 
-    Object.keys(state).map((val, index) => {
-      if (languageRE.test(val)) {
-        countLanguages++;
-        objLanguages["languageTitle-" + countLanguages] = "";
-      }
-      return true;
-    });
-    setState(objLanguages);
+    const tempLang = {};
+    const tempLangState = Object.keys(languagesState);
+    const countLang = tempLangState.length;
+
+    tempLang["languageTitle" + countLang] = "";
+
+    setLanguagesState([...languagesState, { ...tempLang }]);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    clear();
+  };
+
+  const clear = () => {
+    setState(initialState);
   };
 
   return (
@@ -155,7 +123,7 @@ const TestProfile = () => {
             <select
               className="item2 select-css"
               name="gender"
-              value={state.gender || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -168,7 +136,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="title"
-              value={state.title || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -181,7 +149,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="ethnicity"
-              value={state.ethnicity || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -196,7 +164,7 @@ const TestProfile = () => {
               type="text"
               name="firstName"
               id="firstName"
-              value={state.firstName}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="surname">
@@ -206,7 +174,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="surname"
-              value={state.surname}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="email">
@@ -216,7 +184,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="email"
-              value={state.email}
+              value={state.name}
               disabled
             />
             <label className="item1" htmlFor="phoneNumber">
@@ -226,7 +194,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="phoneNumber"
-              value={state.phoneNumber || ""}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="citizenship">
@@ -235,7 +203,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="citizenship"
-              value={state.citizenship || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -253,7 +221,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="saId"
-              value={state.saId}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="DOB">
@@ -263,7 +231,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="DOB"
-              value={state.DOB}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="relocation">
@@ -272,7 +240,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="relocation"
-              value={state.relocation || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -286,7 +254,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="currentCity"
-              value={state.currentCity}
+              value={state.name}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="disability">
@@ -295,7 +263,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="disability"
-              value={state.disability || ""}
+              value={state.name}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -308,7 +276,7 @@ const TestProfile = () => {
             <textarea
               className="item2"
               name="introduction"
-              value={state.introduction || ""}
+              value={state.name}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -318,9 +286,9 @@ const TestProfile = () => {
           <h3>Work Experience</h3>
           <button onClick={addWrkExp}>Add</button>
           <WrkExp
+            wrkExpState={wrkExpState}
             handleChange={handleChange}
             state={state}
-            wrkExpArr={wrkExpArr}
           />
         </div>
 
@@ -328,27 +296,27 @@ const TestProfile = () => {
           <h3>Education</h3>
           <button onClick={addEdu}>Add</button>
           <NewEducation
+            eduState={eduState}
             handleChange={handleChange}
             state={state}
-            educationArr={educationArr}
           />
         </div>
         <div className="Profile--skills">
           <h3>Skills</h3>
           <button onClick={addSkills}>Add</button>
           <NewSkills
+            skillState={skillState}
             handleChange={handleChange}
             state={state}
-            skillsArr={skillsArr}
           />
         </div>
         <div className="Profile--languages">
           <h3>Languages</h3>
           <button onClick={addLanguages}>Add</button>
           <NewLanguages
+            languagesState={languagesState}
             handleChange={handleChange}
             state={state}
-            languagesArr={languagesArr}
           />
         </div>
         <div className="Profile--desired-job">
