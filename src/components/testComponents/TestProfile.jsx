@@ -1,5 +1,5 @@
-import React from "react";
-import { auth } from "../../firebase";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 import useSetState from "../useSetState";
 import WrkExp from "./WrkExp";
@@ -18,9 +18,51 @@ const initialState = {
   languageTitle: "",
 };
 
+// REGEX
+const wrkExpRe = /jobTitle/;
+const educationRE = /graduationYear/;
+const skillsRE = /skillsTitle/;
+const languageRE = /languageTitle/;
+
+// Lists
+const wrkExpArr = [];
+const educationArr = [];
+const skillsArr = [];
+const languagesArr = [];
+
 const TestProfile = () => {
   const [state, setState] = useSetState(initialState);
-  console.log(auth.currentUser.uid);
+  const [loading, setLoading] = useState(true);
+  const [addSection, setAddSection] = useState(false);
+
+  const user = useContext(UserContext);
+  useEffect(() => {
+    if (user && loading) {
+      console.log("We have a user!", user);
+
+      setState(user);
+      setLoading(false);
+    }
+  }, [loading, setState, user]);
+
+  // const myLoader = Object.keys(state).map((val, index) => {
+  //   if (wrkExpRe.test(val)) {
+  //     wrkExpArr.push(val);
+  //   } else if (educationRE.test(val)) {
+  //     educationArr.push(val);
+  //   } else if (skillsRE.test(val)) {
+  //     skillsArr.push(val);
+  //   } else if (languageRE.test(val)) {
+  //     languagesArr.push(val);
+  //   }
+  //   return setLoading(false);
+  // });
+
+  useEffect(() => {
+    if (addSection) {
+      console.log("We are adding a section!");
+    }
+  }, [addSection]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,32 +79,10 @@ const TestProfile = () => {
       [event.target.name]: event.target.value,
     });
   };
-  // REGEX
-  const wrkExpRe = /jobTitle/;
-  const educationRE = /graduationYear/;
-  const skillsRE = /skillsTitle/;
-  const languageRE = /languageTitle/;
-  // Lists
-  const wrkExpArr = [];
-  const educationArr = [];
-  const skillsArr = [];
-  const languagesArr = [];
-  // Loading
-  const myLoader = Object.keys(state).map((val, index) => {
-    if (wrkExpRe.test(val)) {
-      wrkExpArr.push(val);
-    } else if (educationRE.test(val)) {
-      educationArr.push(val);
-    } else if (skillsRE.test(val)) {
-      skillsArr.push(val);
-    } else if (languageRE.test(val)) {
-      languagesArr.push(val);
-    }
-    return true;
-  });
-  // Click Handler
+
   const addWrkExp = (event) => {
     event.preventDefault();
+    setAddSection(true);
     let countWrkExp = 0;
     let obj = {};
 
@@ -86,6 +106,7 @@ const TestProfile = () => {
       if (educationRE.test(val)) {
         countEducation = countEducation + 1;
         objEducation["graduationYear-" + countEducation] = "";
+        objEducation["tracking"] = countEducation + 1;
       }
       return true;
     });
@@ -116,6 +137,7 @@ const TestProfile = () => {
         countLanguages++;
         objLanguages["languageTitle-" + countLanguages] = "";
       }
+      return true;
     });
     setState(objLanguages);
   };
