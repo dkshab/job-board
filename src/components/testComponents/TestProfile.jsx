@@ -6,12 +6,13 @@ import WrkExp from "./WrkExp";
 import NewEducation from "./NewEducation";
 import NewSkills from "./NewSkills";
 import NewLanguages from "./NewLanguages";
+import { firestore } from "../../firebase";
 
 const initialState = {
-  firstName: "Dumisani",
-  surname: "Shabangu",
-  email: "dumisani888@gmail.com",
-  jobTitle: "Fancy title",
+  firstName: "",
+  surname: "",
+  email: "",
+  jobTitle: "",
   companyName: "",
   skillsTitle: "",
   languageTitle: "",
@@ -38,6 +39,7 @@ const TestProfile = () => {
   const [languagesState, setLanguagesState] = useState([{ ...blankLanguage }]);
 
   const user = useContext(UserContext);
+
   useEffect(() => {
     if (user && loading) {
       //console.log("We have a user!", user);
@@ -103,6 +105,14 @@ const TestProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (user) {
+      const userRef = firestore.doc(`users/${user.uid}`);
+
+      userRef.update(state);
+
+      console.log(state);
+    }
+
     clear();
   };
 
@@ -123,7 +133,7 @@ const TestProfile = () => {
             <select
               className="item2 select-css"
               name="gender"
-              value={state.name}
+              value={state.gender}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -136,7 +146,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="title"
-              value={state.name}
+              value={state.title}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -149,7 +159,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="ethnicity"
-              value={state.name}
+              value={state.ethnicity}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -164,7 +174,7 @@ const TestProfile = () => {
               type="text"
               name="firstName"
               id="firstName"
-              value={state.name}
+              value={state.firstName}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="surname">
@@ -174,7 +184,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="surname"
-              value={state.name}
+              value={state.surname}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="email">
@@ -184,7 +194,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="email"
-              value={state.name}
+              value={state.email}
               disabled
             />
             <label className="item1" htmlFor="phoneNumber">
@@ -194,7 +204,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="phoneNumber"
-              value={state.name}
+              value={state.phoneNumber}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="citizenship">
@@ -203,7 +213,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="citizenship"
-              value={state.name}
+              value={state.citizenship}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -221,7 +231,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="saId"
-              value={state.name}
+              value={state.saId}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="DOB">
@@ -231,7 +241,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="DOB"
-              value={state.name}
+              value={state.DOB}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="relocation">
@@ -240,7 +250,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="relocation"
-              value={state.name}
+              value={state.relocation}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -254,7 +264,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="currentCity"
-              value={state.name}
+              value={state.currentCity}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="disability">
@@ -263,7 +273,7 @@ const TestProfile = () => {
             <select
               className="item2"
               name="disability"
-              value={state.name}
+              value={state.disability}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -276,7 +286,7 @@ const TestProfile = () => {
             <textarea
               className="item2"
               name="introduction"
-              value={state.name}
+              value={state.introduction}
               onChange={handleChange}
             ></textarea>
           </div>
