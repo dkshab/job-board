@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { auth } from "../../firebase";
 
 import useSetState from "../useSetState";
+import WrkExp from "./WrkExp";
+import NewEducation from "./NewEducation";
+import NewSkills from "./NewSkills";
+import NewLanguages from "./NewLanguages";
 
 const initialState = {
   firstName: "Dumisani",
@@ -8,10 +13,14 @@ const initialState = {
   email: "dumisani888@gmail.com",
   jobTitle: "Fancy title",
   companyName: "",
+  graduationYear: "",
+  skillsTitle: "",
+  languageTitle: "",
 };
 
 const TestProfile = () => {
   const [state, setState] = useSetState(initialState);
+  console.log(auth.currentUser.uid);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,92 +37,89 @@ const TestProfile = () => {
       [event.target.name]: event.target.value,
     });
   };
-
+  // REGEX
+  const wrkExpRe = /jobTitle/;
+  const educationRE = /graduationYear/;
+  const skillsRE = /skillsTitle/;
+  const languageRE = /languageTitle/;
+  // Lists
+  const wrkExpArr = [];
+  const educationArr = [];
+  const skillsArr = [];
+  const languagesArr = [];
+  // Loading
+  const myLoader = Object.keys(state).map((val, index) => {
+    if (wrkExpRe.test(val)) {
+      wrkExpArr.push(val);
+    } else if (educationRE.test(val)) {
+      educationArr.push(val);
+    } else if (skillsRE.test(val)) {
+      skillsArr.push(val);
+    } else if (languageRE.test(val)) {
+      languagesArr.push(val);
+    }
+    return true;
+  });
+  // Click Handler
   const addWrkExp = (event) => {
     event.preventDefault();
-    let count = 0;
+    let countWrkExp = 0;
     let obj = {};
 
-    let wrkRE = /jobTitle/g;
     Object.keys(state).map((val, index) => {
-      if (wrkRE.test(val)) {
-        count++;
-        obj["jobTitle-" + count] = "";
-        obj["companyName-" + count] = "";
+      if (wrkExpRe.test(val)) {
+        countWrkExp++;
+        obj["jobTitle-" + countWrkExp] = "";
+        obj["companyName-" + countWrkExp] = "";
       }
+      return true;
     });
     setState(obj);
   };
-  const wrkExp = Object.keys(state).map((val, index) => {
-    let wrkRender = /jobTitle/g;
-    if (wrkRender.test(val)) {
-      return (
-        <div className="flex" key={`wrkExp-${index}`}>
-          <label className="item1" htmlFor={`jobTitle-${index}`}>
-            Job Title
-          </label>
-          <input
-            className="item2"
-            type="text"
-            name={`jobTitle-${index}`}
-            value={state.jobId}
-            onChange={handleChange}
-          />
-          <label className="item1" htmlFor={`companyName-${index}`}>
-            Company name
-          </label>
-          <input
-            className="item2"
-            type="text"
-            name={`companyName-${index}`}
-            value={state.jobId}
-            onChange={handleChange}
-          />
-          <label className="item1" htmlFor={`startDate-${index}`}>
-            Start date
-          </label>
-          <select
-            className="item2"
-            name="startDate-${index}"
-            value={state.jobId || ""}
-            onChange={handleChange}
-          >
-            <option defaultValue>Select one...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <label className="item1" htmlFor={`endDate-${index}`}>
-            End date
-          </label>
-          <select
-            className="item2"
-            name="endDate-${index}"
-            value={state.jobId || ""}
-            onChange={handleChange}
-          >
-            <option defaultValue>Select one...</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-          </select>
-          <label htmlFor="industry">Industry</label>
-          <select
-            name="industry"
-            value={state.industry || ""}
-            onChange={handleChange}
-          >
-            <option defaultValue>Select one...</option>
-            <option value="Legal">Legal</option>
-            <option value="Education & Training">Education & Training</option>
-            <option value="Scientific & Engineering">
-              Scientific & Engineering
-            </option>
-          </select>
-        </div>
-      );
-    }
-  });
+
+  const addEdu = (event) => {
+    event.preventDefault();
+    let countEducation = 0;
+    let objEducation = {};
+
+    Object.keys(state).map((val, index) => {
+      if (educationRE.test(val)) {
+        countEducation = countEducation + 1;
+        objEducation["graduationYear-" + countEducation] = "";
+      }
+      return true;
+    });
+    setState(objEducation);
+  };
+  const addSkills = (event) => {
+    event.preventDefault();
+    let countSkills = 0;
+    let objSkills = {};
+
+    Object.keys(state).map((val, index) => {
+      if (skillsRE.test(val)) {
+        countSkills = countSkills + 1;
+        objSkills["skillsTitle-" + countSkills] = "";
+      }
+      return true;
+    });
+    setState(objSkills);
+    //console.log(state);
+  };
+  const addLanguages = (event) => {
+    event.preventDefault();
+    let countLanguages = 0;
+    let objLanguages = {};
+
+    Object.keys(state).map((val, index) => {
+      if (languageRE.test(val)) {
+        countLanguages++;
+        objLanguages["languageTitle-" + countLanguages] = "";
+      }
+    });
+    setState(objLanguages);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} className="Profile">
@@ -125,7 +131,7 @@ const TestProfile = () => {
               Gender
             </label>
             <select
-              className="item2"
+              className="item2 select-css"
               name="gender"
               value={state.gender || ""}
               onChange={handleChange}
@@ -288,91 +294,40 @@ const TestProfile = () => {
 
         <div className="Profile--wrkExp">
           <h3>Work Experience</h3>
-          {wrkExp}
-          {/* <input
-            type="button"
-            value="Add Work Experience"
-            onClick={addWrkExp}
-          /> */}
           <button onClick={addWrkExp}>Add</button>
+          <WrkExp
+            handleChange={handleChange}
+            state={state}
+            wrkExpArr={wrkExpArr}
+          />
         </div>
 
         <div className="Profile--education">
           <h3>Education</h3>
-          <div className="flex">
-            <label className="item1" htmlFor="graduationYear">
-              Graduation Year
-            </label>
-            <input className="item2" type="text" name="graduationYear" />
-            <label className="item1" htmlFor="graduationInstitution">
-              Institution
-            </label>
-            <input className="item2" type="text" name="graduationInstitution" />
-            <label className="item1" htmlFor="studyField">
-              Field of Study
-            </label>
-            <input className="item2" type="text" name="studyField" />
-            <label className="item1" htmlFor="qualification">
-              Qualification
-            </label>
-            <select
-              className="item2"
-              name="qualification"
-              value={state.qualification || ""}
-              onChange={handleChange}
-            >
-              <option defaultValue>Select one...</option>
-              <option value="Diploma">Diploma</option>
-              <option value="Honors">Honors</option>
-              <option value="Masters">Masters</option>
-            </select>
-          </div>
+          <button onClick={addEdu}>Add</button>
+          <NewEducation
+            handleChange={handleChange}
+            state={state}
+            educationArr={educationArr}
+          />
         </div>
         <div className="Profile--skills">
           <h3>Skills</h3>
-          <div className="flex">
-            <label className="item1" htmlFor="skill">
-              Skill
-            </label>
-            <input className="item2" type="text" />
-            <label className="item1" htmlFor="skillLevel">
-              Level
-            </label>
-            <select
-              className="item2"
-              name="skillLevel"
-              value={state.skillLevel || ""}
-              onChange={handleChange}
-            >
-              <option defaultValue>Select one...</option>
-              <option value="Basic">Basic</option>
-              <option value="Medium">Medium</option>
-              <option value="Good">Good</option>
-            </select>
-          </div>
+          <button onClick={addSkills}>Add</button>
+          <NewSkills
+            handleChange={handleChange}
+            state={state}
+            skillsArr={skillsArr}
+          />
         </div>
         <div className="Profile--languages">
           <h3>Languages</h3>
-          <div className="flex">
-            <label className="item1" htmlFor="language">
-              Language
-            </label>
-            <input className="item2" type="text" />
-            <label className="item1" htmlFor="languageLevel">
-              Level
-            </label>
-            <select
-              className="item2"
-              name="languageLevel"
-              value={state.languageLevel || ""}
-              onChange={handleChange}
-            >
-              <option defaultValue>Select one...</option>
-              <option value="Basic">Basic</option>
-              <option value="Medium">Medium</option>
-              <option value="Good">Good</option>
-            </select>
-          </div>
+          <button onClick={addLanguages}>Add</button>
+          <NewLanguages
+            handleChange={handleChange}
+            state={state}
+            languagesArr={languagesArr}
+          />
         </div>
         <div className="Profile--desired-job">
           <h3>Desired Job Criteria</h3>
@@ -459,24 +414,30 @@ const TestProfile = () => {
         </div>
         <div className="Profile--current-salary">
           <h3>Current Salary</h3>
-          <select
-            name="currentSalary"
-            value={state.currentSalary || ""}
-            onChange={handleChange}
-          >
-            <option defaultValue>Select one...</option>
-            <option value="0-50K Annually R">0-50K Annually R</option>
-            <option value="50-100K Annually R">50-100K Annually R</option>
-            <option value="100-150K Annually R">100-150K Annually R</option>
-            <option value="150-200K Annually R">150-200K Annually R</option>
-            <option value="200-250K Annually R">200-250K Annually R</option>
-          </select>
+          <div className="flex">
+            <label className="item1" htmlFor="currentSalary">
+              Salary
+            </label>
+            <select
+              className="item2"
+              name="currentSalary"
+              value={state.currentSalary || ""}
+              onChange={handleChange}
+            >
+              <option defaultValue>Select one...</option>
+              <option value="0-50K Annually R">0-50K Annually R</option>
+              <option value="50-100K Annually R">50-100K Annually R</option>
+              <option value="100-150K Annually R">100-150K Annually R</option>
+              <option value="150-200K Annually R">150-200K Annually R</option>
+              <option value="200-250K Annually R">200-250K Annually R</option>
+            </select>
+          </div>
         </div>
         <div className="Profile--attach-cv">
           <h3>Attach you CV</h3>
           <input type="file" />
         </div>
-        <input type="submit" value="Submit" />
+        <button>Submit</button>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </form>
     </>
