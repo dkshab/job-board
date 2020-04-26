@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, connectHits } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  SearchBox,
+  connectHits,
+  RefinementList,
+} from "react-instantsearch-dom";
 
 import Hits from "./search/Hits";
 
@@ -22,7 +27,10 @@ class Search extends Component {
               <SearchBox searchAsYouType={false} />
             </div>
 
-            <div className="side">Refinement Panel</div>
+            <div className="side">
+              Refinement Panel
+              <RefinementList attribute="location" />
+            </div>
 
             <div className="main">
               {" "}
