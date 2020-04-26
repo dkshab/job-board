@@ -1,6 +1,7 @@
 @import "_variables";
 @import "_nav";
 @import "_jobs";
+@import "_search.scss";
 
 @mixin button($color) {
   background-color: $color;

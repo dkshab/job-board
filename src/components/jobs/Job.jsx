@@ -5,7 +5,8 @@ import moment from "moment";
 const Job = (props) => {
   const { title, description, id, recruiter, createdAt } = props;
   const limit = 250;
-  console.log(description.length > limit);
+  // console.log(description.length > limit);
+  console.log(createdAt);
   const content =
     description.length > limit
       ? description.substring(0, limit) + "..."

@@ -1,19 +1,5 @@
 import React from "react";
 
-// import algoliasearch from "algoliasearch/lite";
-// import {
-//   InstantSearch,
-//   SearchBox,
-//   connectHits,
-//   RefinementList,
-//   ClearRefinements,
-// } from "react-instantsearch-dom";
-
-// const searchClient = algoliasearch(
-//   "N0A57B25NW",
-//   "a6b841e495d9dcc2bd90c16b529c9c20"
-// );
-
 const Home = () => {
   return (
     <div className="Home">
