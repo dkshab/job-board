@@ -29,7 +29,7 @@ class Search extends Component {
 
             <div className="side">
               Refinement Panel
-              <RefinementList attribute="location" />
+              <RefinementList attribute="location" operator="and" showMore />
             </div>
 
             <div className="main">
@@ -44,8 +44,8 @@ class Search extends Component {
 }
 
 export default Search;
-{
-  /* <input
+
+/* <input
           type="text"
           className="searchTerm"
           placeholder="What are you looking for?"
@@ -53,4 +53,3 @@ export default Search;
         <button type="submit" className="searchButton">
           <span className="fa fa-search"></span>
         </button> */
-}

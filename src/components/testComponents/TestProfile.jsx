@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { UserContext } from "../../providers/UserProvider";
+import { firestore } from "../../firebase";
 
 import useSetState from "../useSetState";
 import WrkExp from "./WrkExp";
 import NewEducation from "./NewEducation";
 import NewSkills from "./NewSkills";
 import NewLanguages from "./NewLanguages";
-import { firestore } from "../../firebase";
+
+import * as ROUTES from "../../constants/routes";
 
 const initialState = {
   firstName: "",
@@ -19,6 +23,7 @@ const initialState = {
 };
 
 const TestProfile = () => {
+  const history = useHistory();
   const [state, setState] = useSetState(initialState);
   const [loading, setLoading] = useState(true);
 
@@ -110,7 +115,8 @@ const TestProfile = () => {
 
       userRef.update(state);
 
-      console.log(state);
+      // console.log(state);
+      history.push(ROUTES.PROFILE);
     }
 
     clear();
@@ -195,7 +201,7 @@ const TestProfile = () => {
               type="text"
               name="email"
               value={state.email}
-              disabled
+              onChange={handleChange}
             />
             <label className="item1" htmlFor="phoneNumber">
               Phone Number
@@ -204,7 +210,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="phoneNumber"
-              value={state.phoneNumber}
+              value={state.phoneNumber || ""}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="citizenship">
@@ -231,7 +237,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="saId"
-              value={state.saId}
+              value={state.saId || ""}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="DOB">
@@ -241,7 +247,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="DOB"
-              value={state.DOB}
+              value={state.DOB || ""}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="relocation">
@@ -264,7 +270,7 @@ const TestProfile = () => {
               className="item2"
               type="text"
               name="currentCity"
-              value={state.currentCity}
+              value={state.currentCity || ""}
               onChange={handleChange}
             />
             <label className="item1" htmlFor="disability">

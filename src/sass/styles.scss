@@ -209,6 +209,9 @@ button,
     "name"
     "bio";
 
+  .far {
+    font-size: 10rem;
+  }
   p {
     margin: 0;
   }
@@ -235,4 +238,71 @@ button,
       font-weight: bold;
     }
   }
+}
+
+.TestProfile {
+  width: 70vw;
+  margin: 0 auto;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-areas:
+    "avatar avatar avatar"
+    "info info info"
+    "intro intro intro";
+
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px 1fr 1fr;
+  .avatar {
+    grid-area: avatar;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .fa-user {
+      font-size: 7rem;
+    }
+  }
+  .info {
+    grid-area: info;
+  }
+  .intro {
+    grid-area: intro;
+    padding: 1rem;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 740px) {
+  .TestProfile {
+    grid-template-areas:
+      "avatar info"
+      "intro intro";
+
+    grid-template-columns: 10rem 1fr;
+    grid-template-rows: 2fr 1fr;
+  }
+  .avatar {
+    text-align: left;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+}
+
+.TestWorkExperience,
+.TestEducation,
+.TestSkills {
+  width: 70vw;
+  margin: 0 auto;
+  padding: 1rem;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
