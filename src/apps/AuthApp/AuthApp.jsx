@@ -13,6 +13,7 @@ import UserProfile from "../../components/UserProfile";
 //import UpdateProfile from "./UpdateProfile";
 import AddJob from "../../components/jobs/AddJob";
 import TestProfile from "../../components/testComponents/TestProfile";
+import RecruiterPage from "../RecruiterApp/RecruiterPage";
 
 const AuthApp = () => {
   return (

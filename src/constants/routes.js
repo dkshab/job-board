@@ -13,3 +13,4 @@ export const ADD_JOB = "/add-job";
 export const JOBPAGE = "/jobs/:id";
 export const PASSWORD_FORGET = "/pw-forget";
 export const SEARCH = "/search";
+export const RECRUITER_PAGE = "/recruiters";

@@ -16,16 +16,31 @@
   justify-content: space-between;
   --columns: 16;
 }
+.RecruiterSignUp {
+  width: 70vw;
+  margin: 0 auto;
+}
+.RecruiterSignUp--container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .item1,
-.item2 {
+.item2,
+.field,
+.title {
   --width: 16;
   --initialbasis: calc(var(--width, 0) / var(--columns, 16) * 100%);
-  flex-basis: var(--initialbasis);
+  --gap-constant: 0.3%;
+  --gap: calc(
+    (var(--columns, 16) - var(--width, 0)) * var(--gap-constant, 0.3%)
+  );
+  flex-basis: calc(var(--initialbasis) - var(--gap));
 }
 
 @media (min-width: 740px) {
-  .flex {
+  .flex,
+  .field {
     --columns: 11;
   }
   .item1 {
@@ -33,5 +48,11 @@
   }
   .item2 {
     --width: 8;
+  }
+  .title {
+    --width: 11;
+  }
+  .field {
+    --width: 5;
   }
 }

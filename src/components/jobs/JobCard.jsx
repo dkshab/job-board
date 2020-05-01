@@ -72,12 +72,10 @@ class JobCard extends Component {
           {showModal ? (
             user ? (
               <Modal>
-                {/* <label htmlFor="displayName">Display Name</label>
-                <input
-                  type="text"
-                  name="displayName"
-                  value={user.displayName}
-                />
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" name="firstName" value={user.firstName} />
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" name="surname" value={user.surname} />
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
@@ -85,8 +83,18 @@ class JobCard extends Component {
                   name="email"
                   value={user.email}
                   required
-                /> */}{" "}
-                'I am applying'
+                />
+                <label htmlFor="profile">Your Profile</label>
+                <div className="profile-buttons">
+                  <button>Preview</button>
+                  <button>Edit Profile</button>
+                </div>
+                <label htmlFor="additionalDocuments">
+                  Additional Documents
+                </label>
+                <input type="file" />
+
+                <button>Send Application</button>
               </Modal>
             ) : (
               <Modal>

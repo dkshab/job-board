@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { signOut } from "../../firebase";
-import { UserContext } from "../../providers/UserProvider";
 
 import * as ROUTES from "../../constants/routes";
 
-const NavBar = () => {
-  const user = useContext(UserContext);
-  const isRecruiter = user.roles === "recruiter" ? true : false;
-  //console.log(isRecruiter);
+const NavBarRecruiter = () => {
   return (
     <header className="NavBar">
       <a
@@ -23,7 +19,7 @@ const NavBar = () => {
       </a>
       <div className="logo">
         <Link to={ROUTES.HOME}>
-          <h1>jobHunt.io</h1>
+          <h1>Recruiter.io</h1>
         </Link>
       </div>
       <nav id="nav-menu" className="nav-menu" aria-label="Nav menu">
@@ -44,22 +40,14 @@ const NavBar = () => {
             <Link to={ROUTES.ABOUT}>About</Link>
           </li>
           <li className="item">
-            <Link to={ROUTES.JOBS}>Jobs</Link>
-          </li>
-          <li className="item">
             <Link to={ROUTES.SEARCH}>Search</Link>
-          </li>
-          <li className="item">
-            <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
           <li className="item">
             <Link to={ROUTES.PROFILE}>Profile</Link>
           </li>
-          {isRecruiter && (
-            <li className="item button post-job">
-              <Link to={ROUTES.RECRUITER_PAGE}>Recruiters</Link>
-            </li>
-          )}
+          <li className="item button post-job">
+            <Link to={ROUTES.RECRUITER_PAGE}>Recruiters</Link>
+          </li>
           <li className="item button post-job">
             <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
           </li>
@@ -78,4 +66,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBarRecruiter;
