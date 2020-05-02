@@ -13,7 +13,7 @@ import UserProfile from "../../components/UserProfile";
 //import UpdateProfile from "./UpdateProfile";
 import AddJob from "../../components/jobs/AddJob";
 import TestProfile from "../../components/testComponents/TestProfile";
-import RecruiterPage from "../RecruiterApp/RecruiterPage";
+import ServicesAuth from "../../components/recruiters/ServicesAuth";
 
 const AuthApp = () => {
   return (
@@ -28,6 +28,7 @@ const AuthApp = () => {
         <Route exact path={ROUTES.JOBPAGE} component={JobPage} />
         <Route exact path={ROUTES.PROFILE} component={UserProfile} />
         <Route exact path={ROUTES.UPDATE_PROFILE} component={TestProfile} />
+        <Route exact path={ROUTES.RECRUITER_PAGE} component={ServicesAuth} />
       </main>
       <footer>Footer</footer>
     </div>

@@ -1,6 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import useSetState from "../useSetState";
 
-const RecruiterSignUp = () => {
+const initialState = {
+  companyName: "",
+  companyType: "",
+  email: "",
+  phoneNumber: "",
+  firstName: "",
+  lastName: "",
+  companyNameBilling: "",
+  emailBilling: "",
+  vatNumber: "",
+  phoneNumberBilling: "",
+  province: "",
+  postalAddress: "",
+  postalCode: "",
+  city: "",
+};
+
+const RecruiterSignUp = ({ showModal }) => {
+  const [state, setState] = useSetState(initialState);
+  const [showModalState, setShowModalState] = useState(showModal);
+
+  console.log("What is showModal: ", showModalState);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    setShowModalState(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    clear();
+  };
+
+  const clear = () => {
+    setState(initialState);
+  };
+
   return (
     <div className="RecruiterSignUp">
       <form>
@@ -87,7 +126,10 @@ const RecruiterSignUp = () => {
             <input type="checkbox" />
           </label>{" "}
           <div className="buttons">
-            <button>Pay Later</button> <button>Checkout</button>
+            <button>Pay Later</button> <button>Checkout</button>{" "}
+            <button className="sign-out" onClick={handleClick}>
+              Close
+            </button>
           </div>
         </fieldset>
       </form>

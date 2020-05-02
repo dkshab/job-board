@@ -1,7 +1,12 @@
 import React from "react";
+import Services from "../../components/recruiters/Services";
 
 const RecruiterPage = () => {
-  return <div>RecruiterPage</div>;
+  return (
+    <>
+      <Services />
+    </>
+  );
 };
 
 export default RecruiterPage;

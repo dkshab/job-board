@@ -1,0 +1,47 @@
+.UserProfile {
+  border: 2px dotted magenta;
+  background-color: #fff;
+  box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  max-width: 35rem;
+  padding: 2rem;
+  transition: all 1s;
+
+  display: grid;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2em;
+  grid-template-areas:
+    "avatar"
+    "name"
+    "bio";
+
+  .far {
+    font-size: 10rem;
+  }
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .UserProfile--username {
+    grid-area: name;
+    color: #848383;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    p > span {
+      color: #ff0168;
+      font-weight: bold;
+    }
+  }
+}

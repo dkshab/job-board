@@ -10,6 +10,10 @@ import JobsList from "../../components/jobs/JobsList";
 import Search from "../../components/Search";
 import JobPage from "../../components/jobs/JobPage";
 
+import SignInRecruiters from "../../components/recruiters/SignInRecruiters";
+import SignUpRecruiters from "../../components/recruiters/SignUpRecruiters";
+import ServicesNonAuth from "../../components/recruiters/ServicesNonAuth";
+
 const AuthApp = () => {
   return (
     <div className="wrapper">
@@ -20,6 +24,21 @@ const AuthApp = () => {
         <Route exact path={ROUTES.JOBS} component={JobsList} />
         <Route exact path={ROUTES.SEARCH} component={Search} />
         <Route exact path={ROUTES.JOBPAGE} component={JobPage} />
+        <Route
+          exact
+          path={ROUTES.RECRUITER_PAGE_NON_AUTH}
+          component={ServicesNonAuth}
+        />
+        <Route
+          exact
+          path={ROUTES.RECRUITER_SIGNIN}
+          component={SignInRecruiters}
+        />{" "}
+        <Route
+          exact
+          path={ROUTES.RECRUITER_SIGNUP}
+          component={SignUpRecruiters}
+        />
       </main>
       <footer>Footer</footer>
     </div>

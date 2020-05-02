@@ -45,6 +45,9 @@ const NavBarNonAuth = () => {
           </li>
           <li className="item">
             <Link to={ROUTES.LANDING}>Contact</Link>
+          </li>{" "}
+          <li className="item">
+            <Link to={ROUTES.RECRUITER_PAGE_NON_AUTH}>Recruiters</Link>
           </li>
           &nbsp;
           <li className="item button sign-up">

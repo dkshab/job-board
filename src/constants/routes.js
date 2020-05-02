@@ -14,3 +14,6 @@ export const JOBPAGE = "/jobs/:id";
 export const PASSWORD_FORGET = "/pw-forget";
 export const SEARCH = "/search";
 export const RECRUITER_PAGE = "/recruiters";
+export const RECRUITER_PAGE_NON_AUTH = "/recruiters-nonauth";
+export const RECRUITER_SIGNIN = "/recruiters-signin";
+export const RECRUITER_SIGNUP = "/recruiters-signup";

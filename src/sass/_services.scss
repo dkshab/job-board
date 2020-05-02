@@ -1,0 +1,75 @@
+.Services {
+  padding: 1rem;
+
+  .Services--title {
+    text-align: center;
+  }
+
+  .Services--grid {
+    width: 90vw;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+
+    justify-content: space-between;
+    .Services--grid--card {
+      flex-basis: 32.33%;
+      background-color: $white;
+      font-family: inherit;
+      border: 1px solid #e7e7e7;
+      button {
+        color: black;
+        background: $white;
+        border: 1px solid red;
+      }
+      .card-title {
+        border-bottom: 1px solid #e7e7e7;
+        .job {
+          display: block;
+          font-family: inherit;
+          font-size: 2rem;
+        }
+      }
+
+      .card-content {
+        background-color: $white;
+        border-bottom: 1px solid #e7e7e7;
+        text-align: left;
+        padding: 0 0.5rem 0 0.5rem;
+        margin: 0;
+
+        .fas {
+          color: green;
+          margin-right: 0.5rem;
+          &.fa-plus {
+            color: orange;
+          }
+        }
+      }
+      .card-footer {
+        padding: 0 0 0.5rem 0;
+      }
+    }
+  }
+  .Services--info {
+    background-color: $light-gray;
+    margin-top: 2rem;
+    padding: 2rem;
+    max-width: 100vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+      flex-basis: 24.25%;
+      padding: 1rem;
+      text-align: center;
+    }
+    .far,
+    .fas {
+      font-size: 5rem;
+      color: gray;
+    }
+  }
+}
