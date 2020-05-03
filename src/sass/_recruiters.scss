@@ -1,0 +1,81 @@
+.SignInRecruiters {
+  width: 50vw;
+  margin: 0 auto;
+
+  form {
+    display: flex;
+
+    legend,
+    p {
+      text-align: center;
+    }
+    input:not([type="radio"]):not([type="checkbox"]) {
+      width: 25vw;
+      max-width: 30vw;
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: red;
+    }
+
+    .field {
+      text-align: center;
+      margin: 0 0 0.5rem 0;
+    }
+    .options {
+      border-top: 1px solid grey;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      p {
+        margin: 0;
+        color: grey;
+      }
+    }
+    .candidate {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.SignUpRecruiters {
+  width: 50vw;
+  margin: 0 auto;
+  form {
+    display: flex;
+    fieldset {
+      padding: 1.5rem;
+    }
+    legend,
+    p {
+      text-align: center;
+    }
+    input:not([type="radio"]):not([type="checkbox"]) {
+      width: 35vw;
+      max-width: 40vw;
+      margin: 0 auto;
+    }
+    a {
+      text-decoration: none;
+      color: red;
+    }
+    .title {
+      p {
+        font-size: 1.2rem;
+        font-weight: 700;
+        span {
+          text-transform: uppercase;
+        }
+      }
+    }
+    .field {
+      text-align: center;
+      margin: 0 0 1rem 0;
+      label {
+        font-weight: 600;
+        color: grey;
+      }
+    }
+  }
+}

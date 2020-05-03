@@ -3,8 +3,10 @@
 @import "_jobs";
 @import "_search";
 @import "_services";
-@import "_test.scss";
-@import "_profile.scss";
+@import "_test";
+@import "_profile";
+@import "_recruiters";
+@import "_home";
 
 @mixin button($color) {
   background-color: $color;

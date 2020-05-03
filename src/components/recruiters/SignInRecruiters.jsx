@@ -9,29 +9,39 @@ const SignInRecruiters = () => {
       <form>
         <fieldset>
           <legend>Sign In</legend>
-          <label htmlFor="email">Email Address</label>
-          <input type="text" name="email" required />{" "}
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password-signin"
-            name="password"
-            required
-          />
-          <Link to={ROUTES.PASSWORD_FORGET}>
-            <p>Forgot password?</p>
-          </Link>
+          <div className="field">
+            <label htmlFor="email">Email Address</label>
+            <input type="text" name="email" required />
+          </div>
+          <div className="field">
+            {" "}
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password-signin"
+              name="password"
+              required
+            />
+          </div>
+          <div className="field"></div>
+          <p>
+            <Link to={ROUTES.PASSWORD_FORGET}>Forgot password?</Link>
+          </p>
           <input type="submit" value="Sign In" />
-          <p>You do not have a customer account yet?</p>
-          <Link to={ROUTES.RECRUITER_SIGNUP}>
-            {" "}
-            <p>Register now!</p>{" "}
-          </Link>
-          <p>Are you a candidate?</p>
-          <Link to={ROUTES.SIGNIN}>
-            {" "}
-            <p>Sign in here</p>{" "}
-          </Link>
+          <div className="options">
+            <p>You do not have a customer account yet?</p>
+            <p>
+              {" "}
+              <Link to={ROUTES.RECRUITER_SIGNUP}>Register now!</Link>
+            </p>
+            <div className="candidate">
+              {" "}
+              <p>Are you a candidate?</p>{" "}
+              <p>
+                <Link to={ROUTES.SIGNIN}> Sign in here </Link>
+              </p>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>

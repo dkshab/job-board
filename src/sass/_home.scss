@@ -1,17 +1,49 @@
-// .Home {
-//   display: flex;
-//   .left-panel {
-//     background-color: lightsalmon;
-//   }
-//   .right-panel {
-//     background-color: lightsteelblue;
-//   }
-//   .ais-SearchBox-form {
-//     display: flex;
-//     button {
-//       height: 2.75rem;
-//       width: 3rem;
-//       font: 2rem;
-//     }
-//   }
-// }
+.Home {
+  height: 70vh;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  background: url("../img/despaired-2261021_1280.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  color: #0a0a0b;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .flex-form {
+    display: flex;
+    padding: 0 0 0 0.5rem;
+
+    line-height: 3.2rem;
+    font-size: 1rem;
+    border-radius: 0;
+    outline: 0;
+
+    input[type="search"] {
+      flex-basis: 40vw;
+      width: 19rem;
+    }
+
+    input[type="submit"] {
+      background: #ef3f5a;
+      border: 1px solid #ef3f5a;
+      color: #fff;
+      //padding: 0 3rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      &:hover {
+        background: #d73851;
+        border: 1px solid #d73851;
+      }
+    }
+  }
+}

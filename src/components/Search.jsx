@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 
 import algoliasearch from "algoliasearch/lite";
 import {
@@ -17,39 +18,30 @@ const searchClient = algoliasearch(
 
 const CustomHits = connectHits(Hits);
 
-class Search extends Component {
-  render() {
-    return (
-      <div className="Search">
-        <div className="grid">
-          <InstantSearch searchClient={searchClient} indexName="jobs">
-            <div className="header">
-              <SearchBox searchAsYouType={false} />
-            </div>
+const Search = () => {
+  const { query } = useParams();
 
-            <div className="side">
-              Refinement Panel
-              <RefinementList attribute="location" operator="and" showMore />
-            </div>
+  return (
+    <div className="Search">
+      <div className="grid">
+        <InstantSearch searchClient={searchClient} indexName="jobs">
+          <div className="header">
+            <SearchBox searchAsYouType={true} defaultRefinement={query} />
+          </div>
 
-            <div className="main">
-              {" "}
-              <CustomHits />
-            </div>
-          </InstantSearch>
-        </div>
+          <div className="side">
+            Refinement Panel
+            <RefinementList attribute="location" operator="and" showMore />
+          </div>
+
+          <div className="main">
+            {" "}
+            <CustomHits />
+          </div>
+        </InstantSearch>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Search;
-
-/* <input
-          type="text"
-          className="searchTerm"
-          placeholder="What are you looking for?"
-        />
-        <button type="submit" className="searchButton">
-          <span className="fa fa-search"></span>
-        </button> */
