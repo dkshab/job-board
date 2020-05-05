@@ -48,9 +48,6 @@ const NavBar = () => {
             <Link to={ROUTES.JOBS}>Jobs</Link>
           </li>
           <li className="item">
-            <Link to={ROUTES.SEARCH}>Search</Link>
-          </li>
-          <li className="item">
             <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
           <li className="item">

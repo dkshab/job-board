@@ -34,7 +34,7 @@ const SearchCard = ({
         </ul>
       </div>
       <div className="SearchCard--Description">
-        <h2>{title}</h2>
+        <h3>{title}</h3>
         <p className="content">{content}</p>
         <p className="apply">
           <Link to={`jobs/${objectID}`}>Apply</Link>

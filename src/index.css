@@ -22,13 +22,24 @@
 }
 .RecruiterSignUp--container {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+}
+
+.Search {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1080px;
 }
 
 .item1,
 .item2,
 .field,
-.title {
+.title,
+.Search--header,
+.Search--side,
+.Search--main {
   --width: 16;
   --initialbasis: calc(var(--width, 0) / var(--columns, 16) * 100%);
   --gap-constant: 0.3%;
@@ -36,6 +47,36 @@
     (var(--columns, 16) - var(--width, 0)) * var(--gap-constant, 0.3%)
   );
   flex-basis: calc(var(--initialbasis) - var(--gap));
+}
+
+@media (min-width: 350px) {
+  .Search {
+    --columns: 11;
+  }
+  /* Resizing card component */
+  .Search .SearchCard {
+    width: 90%;
+  }
+  .SearchCard--Description .content {
+    color: red;
+    display: none;
+  }
+  .Search--header {
+    --width: 11;
+    background-color: lightsalmon;
+    order: 3;
+  }
+  .Search--side {
+    --width: 11;
+    background-color: lightgreen;
+    order: 2;
+  }
+
+  .Search--main {
+    --width: 11;
+    background-color: lightyellow;
+    order: 1;
+  }
 }
 
 @media (min-width: 740px) {
@@ -54,5 +95,30 @@
   }
   .field {
     --width: 5;
+  }
+  .SearchCard--Description .content {
+    display: block;
+  }
+}
+
+@media (min-width: 1020px) {
+  .Search {
+    --columns: 12;
+  }
+  .Search--header {
+    --width: 12;
+    background-color: lightcoral;
+    order: 1;
+  }
+  .Search--side {
+    --width: 3;
+    background-color: lightslategray;
+    order: 2;
+  }
+
+  .Search--main {
+    --width: 9;
+    background-color: lightskyblue;
+    order: 3;
   }
 }

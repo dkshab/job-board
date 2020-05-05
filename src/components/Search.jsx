@@ -23,23 +23,23 @@ const Search = () => {
 
   return (
     <div className="Search">
-      <div className="grid">
+      <>
         <InstantSearch searchClient={searchClient} indexName="jobs">
-          <div className="header">
+          <div className="Search--header">
             <SearchBox searchAsYouType={true} defaultRefinement={query} />
           </div>
 
-          <div className="side">
+          <div className="Search--side">
             Refinement Panel
             <RefinementList attribute="location" operator="and" showMore />
           </div>
 
-          <div className="main">
+          <div className="Search--main">
             {" "}
             <CustomHits />
           </div>
         </InstantSearch>
-      </div>
+      </>
     </div>
   );
 };
