@@ -50,9 +50,21 @@ const NavBar = () => {
           <li className="item">
             <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
-          <li className="item">
-            <Link to={ROUTES.PROFILE}>Profile</Link>
-          </li>
+          {!isRecruiter && (
+            <li className="item">
+              <Link to={ROUTES.PROFILE}>Profile</Link>
+            </li>
+          )}
+          {isRecruiter && (
+            <>
+              <li className="item">
+                <Link to={ROUTES.ACCOUNT}>Account</Link>
+              </li>{" "}
+              <li className="item">
+                <Link to={ROUTES.RECRUITER_PAGE}>Recruiters</Link>
+              </li>
+            </>
+          )}
           <li className="item button post-job">
             <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
           </li>

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import firebase from "firebase/app";
 
 import { UserContext } from "../../providers/UserProvider";
-import { firestore } from "../../firebase";
+import { firestore, storage } from "../../firebase";
 
 import useSetState from "../useSetState";
 import WrkExp from "./WrkExp";
@@ -26,6 +27,8 @@ const TestProfile = () => {
   const history = useHistory();
   const [state, setState] = useSetState(initialState);
   const [loading, setLoading] = useState(true);
+  const [file, setFile] = useState("");
+  const [filename, setFilename] = useState("Choose File");
 
   // Work experience
   const blankWrkExp = { jobTitle: "" };
@@ -58,6 +61,11 @@ const TestProfile = () => {
     setState({
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleFileInput = (event) => {
+    setFile(event.target.files[0]);
+    setFilename(event.target.files[0].name);
   };
 
   const addWrkExp = (event) => {
@@ -115,10 +123,40 @@ const TestProfile = () => {
 
       userRef.update(state);
 
-      // console.log(state);
+      if (user.resumeURL) {
+        let tempFileRef = storage.refFromURL(user.resumeURL);
+        // deleting existing resume
+        tempFileRef
+          .delete()
+          .then(() => {
+            console.log("File deleted!");
+            userRef.update({
+              resumeURL: firebase.firestore.FieldValue.delete(),
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      // Uploading new resume
+      storage
+        .ref()
+        .child("resumes")
+        .child(user.uid)
+        .child(filename)
+        .put(file)
+        .then((response) => response.ref.getDownloadURL())
+        .then((resumeURL) => userRef.update({ resumeURL }))
+        .then(() => {
+          console.log("Resume uploaded!");
+        });
+
+      // Redirect to profile page
       history.push(ROUTES.PROFILE);
     }
 
+    // Reset the state to blank
     clear();
   };
 
@@ -441,10 +479,16 @@ const TestProfile = () => {
         </div>
         <div className="Profile--attach-cv">
           <h3>Attach you CV</h3>
-          <input type="file" />
+          <label htmlFor="customFile">{filename}</label>
+          <input
+            type="file"
+            className="custom-file-input"
+            id="customFile"
+            onChange={handleFileInput}
+          />
         </div>
         <button>Submit</button>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
       </form>
     </>
   );

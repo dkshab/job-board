@@ -3,16 +3,40 @@ import moment from "moment";
 
 import Modal from "../Modal";
 import withUser from "../../providers/withUser";
-import { auth } from "../../firebase";
-
-// const doesNotbelongsToCurrentUser = (currentUser, recruiter) => {
-//   if (!currentUser) return false;
-//   if (!recruiter) return false;
-//   return currentUser.uid !== recruiter.uid;
-// };
+import { auth, storage, firestore } from "../../firebase";
 
 class JobCard extends Component {
-  state = { showModal: false, email: "", password: "" };
+  state = { showModal: false, email: "", password: "", resumeName: "Try" };
+
+  get jobId() {
+    return this.props.id;
+  }
+
+  get jobRef() {
+    return firestore.doc(`jobs/${this.jobId}`);
+  }
+
+  get jobApplicationsRef() {
+    return this.jobRef.collection("applications");
+  }
+
+  componentDidMount = () => {
+    const { user } = this.props;
+
+    if (user) {
+      if (user.resumeURL) {
+        let tempFileRef = storage.refFromURL(user.resumeURL);
+
+        tempFileRef.getMetadata().then((metadata) => {
+          console.log(metadata);
+          this.setState({ resumeName: metadata.name });
+        });
+      }
+    }
+
+    this.setState({ resume: "Yes" });
+    // console.log(user);
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,13 +46,11 @@ class JobCard extends Component {
 
   handleClick = () => {
     this.setState({ showModal: !this.state.showModal }, () => {
-      console.log("Apply");
+      console.log(this.props);
     });
   };
 
-  // handleApply = () => {};
-
-  handleSubmit = async (event) => {
+  handleSignIn = async (event) => {
     event.preventDefault();
     const { email, password } = this.state;
 
@@ -45,9 +67,20 @@ class JobCard extends Component {
     this.setState({ showModal: !this.state.showModal });
   };
 
+  handleApply = (event) => {
+    event.preventDefault();
+
+    const { user } = this.props;
+    this.jobApplicationsRef.add(user);
+
+    this.setState({ showModal: !this.state.showModal }, () => {
+      console.log(this.props);
+    });
+  };
+
   render() {
     const { title, description, recruiter, createdAt, user } = this.props;
-    const { showModal, email, password } = this.state;
+    const { showModal, email, password, resumeName } = this.state;
     // console.log(user);
 
     return (
@@ -65,40 +98,74 @@ class JobCard extends Component {
         <div className="JobCard--Description">
           <h2>{title}</h2>
           <p>{description}</p>
-          {/* {doesNotbelongsToCurrentUser(user, recruiter) && (
-            <button onClick={this.handleClick}>Apply</button>
-          )} */}
+
           <button onClick={this.handleClick}> Apply</button>
           {showModal ? (
             user ? (
               <Modal>
-                <label htmlFor="firstName">First Name</label>
-                <input type="text" name="firstName" value={user.firstName} />
-                <label htmlFor="lastName">Last Name</label>
-                <input type="text" name="surname" value={user.surname} />
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email-signin"
-                  name="email"
-                  value={user.email}
-                  required
-                />
-                <label htmlFor="profile">Your Profile</label>
-                <div className="profile-buttons">
-                  <button>Preview</button>
-                  <button>Edit Profile</button>
-                </div>
-                <label htmlFor="additionalDocuments">
-                  Additional Documents
-                </label>
-                <input type="file" />
-
-                <button>Send Application</button>
+                <form onSubmit={this.handleApply}>
+                  <fieldset>
+                    {" "}
+                    <legend>Apply</legend>
+                    <div className="field">
+                      {" "}
+                      <label htmlFor="firstName">First Name</label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={user.firstName}
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        name="surname"
+                        value={user.surname}
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email-signin"
+                        name="email"
+                        value={user.email}
+                        onChange={this.handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="profile">
+                      <label htmlFor="profile">Your Profile</label>
+                      <h4>Resume</h4>
+                      <p>
+                        {user && (
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={user.resumeURL}
+                          >
+                            {resumeName}
+                          </a>
+                        )}
+                      </p>
+                    </div>{" "}
+                    <div className="additionalDocuments">
+                      <label htmlFor="additionalDocuments">
+                        Additional Documents
+                      </label>
+                      <input type="file" />
+                    </div>
+                    <button type="submit">Send Application</button>{" "}
+                    <button onClick={this.handleClick}>Close</button>
+                  </fieldset>
+                </form>
               </Modal>
             ) : (
               <Modal>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSignIn}>
                   <fieldset>
                     <legend>Sign In</legend>
                     <label htmlFor="email">Email</label>

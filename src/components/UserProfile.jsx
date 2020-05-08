@@ -1,12 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { storage } from "../firebase";
 import { UserContext } from "../providers/UserProvider";
 import * as ROUTES from "../constants/routes";
 
 const UserProfile = () => {
+  const [resumeName, setResumeName] = useState("");
   const user = useContext(UserContext);
-  console.log(user);
+  //console.log(user);
+
+  useEffect(() => {
+    if (user) {
+      if (user.resumeURL) {
+        let resumeNameRef = storage.refFromURL(user.resumeURL);
+        resumeNameRef
+          .getMetadata()
+          .then((metadata) => {
+            //console.log(metadata.name);
+            setResumeName(metadata.name);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+  }, [user]);
+
   return (
     <>
       {" "}
@@ -70,6 +90,16 @@ const UserProfile = () => {
           </p>
           <p>{user.skillTitle0}</p>
         </div>
+      </div>
+      <div className="TestResume">
+        <h3>Current Resume</h3>
+        <p>
+          {user && (
+            <a target="_blank" rel="noopener noreferrer" href={user.resumeURL}>
+              {resumeName}
+            </a>
+          )}
+        </p>
       </div>
       <Link to={ROUTES.UPDATE_PROFILE}>
         <p>Update details</p>

@@ -7,6 +7,7 @@
 @import "_profile";
 @import "_recruiters";
 @import "_home";
+@import "_account";
 
 @mixin button($color) {
   background-color: $color;
@@ -170,6 +171,29 @@ button,
   padding: 15px;
   border-radius: 5px;
   text-align: center;
+  form {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input:not([type="radio"]):not([type="checkbox"]) {
+      width: 25vw;
+      max-width: 30vw;
+      margin: 0 auto;
+      text-align: center;
+    }
+    button {
+      margin-top: 0.5rem;
+    }
+    .field {
+      text-align: center;
+    }
+    .field + .field {
+      margin-top: 1rem;
+    }
+  }
 }
 
 .Search {
