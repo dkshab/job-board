@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import moment from "moment";
 
 import { JobsContext } from "../../providers/JobsProvider";
 import { UserContext } from "../../providers/UserProvider";
+import { Link } from "react-router-dom";
 
 const RecruiterJobsList = () => {
   const jobs = useContext(JobsContext);
@@ -25,6 +27,10 @@ const RecruiterJobsList = () => {
     }
   }, [user, jobs]);
 
+  if (myJobs) {
+    console.log(myJobs[1]);
+  }
+
   return (
     <div className="RecruiterJobsList">
       <div className="RecruiterJobsList--header">
@@ -32,17 +38,44 @@ const RecruiterJobsList = () => {
           Jobs <span>{jobsCount}</span>{" "}
         </div>
         <div className="search">
-          <input type="text" />
+          <input type="text" placeholder="Search..." />
+        </div>
+      </div>
+      <div className="RecruiterJobsList--status">
+        <div className="left">
+          <span className="status-title">Status:</span>
+          <div className="tiles">
+            <div className="tile">
+              {" "}
+              Active <span className="fas fa-times"></span>
+            </div>
+            <div className="tile">
+              {" "}
+              Expired <span className="fas fa-times"></span>
+            </div>
+            <div className="tile">
+              {" "}
+              Gauteng <span className="fas fa-times"></span>
+            </div>
+          </div>
+        </div>
+        <div className="right">
+          Default sorting <span className="fas fa-caret-down"></span>{" "}
         </div>
       </div>
       {myJobs &&
         myJobs.map((job) => {
           return (
             <div className="RecruiterJobsList--job" key={job.id}>
-              <div className="title">{job.title}</div>
-              <div className="applicants">0</div>
-              <div className="location">Joburg</div>
-              <div className="date">Date</div>
+              <div className="title">
+                {" "}
+                <Link to={`jobs/${job.id}`}>{job.title}</Link>{" "}
+              </div>
+              <div className="applicants">Applications (0)</div>
+              <div className="location">{job.location}</div>
+              <div className="date">
+                {moment(job.createdAt.toDate()).calendar()}
+              </div>
             </div>
           );
         })}{" "}

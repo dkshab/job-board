@@ -212,3 +212,87 @@ button,
     height: 2.75rem;
   }
 }
+
+.RecruiterJobsList {
+  background: $extra-light-gray;
+  .RecruiterJobsList--header {
+    box-shadow: 3px 3px 5px 1px #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 0.2rem;
+    .jobsCount {
+      font-weight: bold;
+      span {
+        background: $gray;
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+        border-radius: 0.1rem;
+      }
+    }
+  }
+
+  .RecruiterJobsList--status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: inherit;
+    margin: 1rem 0 1rem 0;
+    padding: 0.5rem;
+    .left {
+      display: flex;
+      align-items: center;
+      .status-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-right: 1rem;
+        color: $gray;
+      }
+      .tiles {
+        display: flex;
+        .tile {
+          background-color: $white;
+          padding: 0.25rem 0.5rem;
+          margin-right: 0.25rem;
+          border-radius: 0.2rem;
+          box-shadow: 3px 3px 3px 1px #ccc;
+
+          &:hover {
+            background-color: gray;
+          }
+        }
+      }
+    }
+    .right {
+      color: $gray;
+    }
+  }
+  .RecruiterJobsList--job {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white;
+    box-shadow: 2px 2px 2px 3px #ccc;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.15rem;
+    .title {
+      flex-basis: 30%;
+      a {
+        text-decoration: none;
+      }
+      a:visited {
+        color: darkblue;
+      }
+    }
+    .applicants {
+      flex-basis: 20%;
+    }
+    .location {
+      flex-basis: 20%;
+    }
+    .date {
+      flex-basis: 10%;
+    }
+  }
+}

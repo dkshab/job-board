@@ -55,9 +55,7 @@ const Account = () => {
         </div>
 
         <div className="main-cards">
-          <div className="card">
-            <AccountContent showContent={showContent} />
-          </div>
+          <AccountContent showContent={showContent} />
         </div>
       </main>
       <footer className="footer">
