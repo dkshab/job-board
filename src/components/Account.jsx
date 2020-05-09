@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+
+import { UserContext } from "../providers/UserProvider";
+import AccountContent from "./recruiters/AccountContent";
 
 const Account = () => {
+  const user = useContext(UserContext);
+  const [showContent, setShowContent] = useState("jobs");
+
+  const handleClick = (event) => {
+    console.log(event.target.textContent.toLowerCase());
+    const tempShowContent = event.target.textContent.toLowerCase();
+    setShowContent(tempShowContent);
+  };
+
   return (
     <div className="Account">
       <div className="menu-icon">
@@ -15,42 +27,37 @@ const Account = () => {
           <span className="fas fa-times sidenav_brand-close"></span>
         </div>{" "}
         <ul className="sidenav__list">
-          <li className="sidenav__list-item">Item One</li>
-          <li className="sidenav__list-item">Item Two</li>
-          <li className="sidenav__list-item">Item Three</li>
-          <li className="sidenav__list-item">Item Four</li>
-          <li className="sidenav__list-item">Item Five</li>
+          {" "}
+          <li className="sidenav__list-item" onClick={handleClick}>
+            Dashboard
+          </li>
+          <li className="sidenav__list-item" onClick={handleClick}>
+            Jobs
+          </li>
+          <li className="sidenav__list-item" onClick={handleClick}>
+            Candidates
+          </li>
+          <li className="sidenav__list-item" onClick={handleClick}>
+            Settings
+          </li>
+          <li className="sidenav__list-item" onClick={handleClick}>
+            Sign Out
+          </li>
         </ul>
       </aside>{" "}
       <main className="main">
         <div className="main-header">
-          <div className="main-header__heading">Hello User</div>{" "}
-          <div className="main-header__updates">Recent Items</div>
-        </div>
-
-        <div className="main-overview">
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>{" "}
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>{" "}
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>{" "}
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>{" "}
-            <div className="overviewcard__info">Card</div>
+          <div className="main-header__heading">Hello {user.displayName} </div>{" "}
+          <div className="main-header__updates">
+            Recent Items
+            <p>{showContent}</p>
           </div>
         </div>
 
         <div className="main-cards">
-          <div className="card">Card</div>
-          <div className="card">Card</div>
-          <div className="card">Card</div>
+          <div className="card">
+            <AccountContent showContent={showContent} />
+          </div>
         </div>
       </main>
       <footer className="footer">
