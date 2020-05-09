@@ -29,6 +29,7 @@ class AddJob extends Component {
       location,
       recruiter,
       createdAt: new Date(),
+      applications: 0,
     };
 
     console.log(job);

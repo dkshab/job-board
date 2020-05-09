@@ -73,9 +73,7 @@ class JobCard extends Component {
     const { user } = this.props;
     this.jobApplicationsRef.add(user);
 
-    this.setState({ showModal: !this.state.showModal }, () => {
-      console.log(this.props);
-    });
+    this.setState({ showModal: !this.state.showModal });
   };
 
   render() {

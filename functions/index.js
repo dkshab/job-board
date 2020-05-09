@@ -59,3 +59,16 @@ exports.onJobCreated = functions.firestore
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
     return index.saveObject(job);
   });
+
+exports.incrementApplicationCount = functions.firestore
+  .document("jobs/{jobId}/applications/{applicationId}")
+  .onCreate(async (snapshot, context) => {
+    const { jobId } = context.params;
+    const jobRef = firestore.doc(`jobs/${jobId}`);
+
+    const applications = await jobRef.get().then((doc) => {
+      return doc.data().applications;
+    });
+
+    return jobRef.update({ applications: applications + 1 });
+  });

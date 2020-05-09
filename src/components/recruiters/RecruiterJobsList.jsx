@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 import { JobsContext } from "../../providers/JobsProvider";
 import { UserContext } from "../../providers/UserProvider";
-import { Link } from "react-router-dom";
 
 const RecruiterJobsList = () => {
   const jobs = useContext(JobsContext);
@@ -26,10 +26,6 @@ const RecruiterJobsList = () => {
       setJobsCount(numberOfJobs);
     }
   }, [user, jobs]);
-
-  if (myJobs) {
-    console.log(myJobs[1]);
-  }
 
   return (
     <div className="RecruiterJobsList">
@@ -71,7 +67,9 @@ const RecruiterJobsList = () => {
                 {" "}
                 <Link to={`jobs/${job.id}`}>{job.title}</Link>{" "}
               </div>
-              <div className="applicants">Applications (0)</div>
+              <div className="applicants">
+                Applications ({job.applications})
+              </div>
               <div className="location">{job.location}</div>
               <div className="date">
                 {moment(job.createdAt.toDate()).calendar()}
@@ -85,29 +83,3 @@ const RecruiterJobsList = () => {
 };
 
 export default RecruiterJobsList;
-
-{
-  /* <div className="TableExample">
-  <table>
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Job Title</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>James</td>
-        <td>Matman</td>
-        <td>Chief Sandwich Eater</td>
-      </tr>
-      <tr>
-        <td>The</td>
-        <td>Tick</td>
-        <td>Crimefighter Sorta</td>
-      </tr>
-    </tbody>
-  </table>{" "}
-</div>; */
-}
