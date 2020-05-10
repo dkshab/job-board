@@ -79,3 +79,40 @@
     }
   }
 }
+
+.RecruiterJobPage {
+  .Tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .Tabs--row {
+      .tab {
+        display: inline-block;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        margin: 0px 2px;
+        background: #000;
+        color: #fff;
+        border-radius: 3px 3px 0px 0px;
+        box-shadow: 0 0.5rem 0.8rem #00000080;
+        &.selected {
+          background: #fffffff6;
+          color: #000;
+          border-top: 3px solid #000;
+        }
+      }
+    }
+
+    .Tabs--panels {
+      background: #fffffff6;
+      box-shadow: 0 2rem 2rem #00000080;
+      min-height: 200px;
+      width: 100%;
+      max-width: 80vw;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 20px;
+    }
+  }
+}
