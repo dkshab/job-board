@@ -16,6 +16,7 @@ import TestProfile from "../../components/testComponents/TestProfile";
 import ServicesAuth from "../../components/recruiters/ServicesAuth";
 import About from "../../components/About";
 import Account from "../../components/Account";
+import RecruiterJobPage from "../../components/recruiters/RecruiterJobPage";
 
 const AuthApp = () => {
   return (
@@ -33,6 +34,11 @@ const AuthApp = () => {
         <Route exact path={ROUTES.RECRUITER_PAGE} component={ServicesAuth} />
         <Route exact path={ROUTES.ABOUT} component={About} />
         <Route exact path={ROUTES.ACCOUNT} component={Account} />
+        <Route
+          exact
+          path={ROUTES.RECRUITER_JOBPAGE}
+          component={RecruiterJobPage}
+        />
       </main>
       <footer>Footer</footer>
     </div>

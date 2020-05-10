@@ -1,7 +1,7 @@
 import React, { Component, createContext } from "react";
 
 import { firestore } from "../firebase";
-import { collectIdsAndData } from "../utilities";
+import { collectIdsAndDocs } from "../utilities";
 
 export const JobsContext = createContext();
 
@@ -13,7 +13,7 @@ class JobsProvider extends Component {
   componentDidMount = async () => {
     const snapshot = await firestore.collection("jobs").get();
 
-    const jobs = snapshot.docs.map(collectIdsAndData);
+    const jobs = snapshot.docs.map(collectIdsAndDocs);
 
     this.setState({ jobs });
   };

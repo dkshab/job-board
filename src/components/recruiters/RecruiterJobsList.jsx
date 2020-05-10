@@ -65,7 +65,7 @@ const RecruiterJobsList = () => {
             <div className="RecruiterJobsList--job" key={job.id}>
               <div className="title">
                 {" "}
-                <Link to={`jobs/${job.id}`}>{job.title}</Link>{" "}
+                <Link to={`/recruiters-jobs/${job.id}`}>{job.title}</Link>{" "}
               </div>
               <div className="applicants">
                 Applications ({job.applications})

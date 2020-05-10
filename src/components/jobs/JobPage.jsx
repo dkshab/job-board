@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { firestore } from "../../firebase";
-import { collectIdsAndData } from "../../utilities";
+import { collectIdsAndDocs } from "../../utilities";
 import JobCard from "./JobCard";
 
 class JobPage extends Component {
@@ -19,7 +19,7 @@ class JobPage extends Component {
 
   componentDidMount = async () => {
     this.unsubscribeFromJob = this.jobRef.onSnapshot((snapshot) => {
-      const job = collectIdsAndData(snapshot);
+      const job = collectIdsAndDocs(snapshot);
       this.setState({ job });
     });
   };
