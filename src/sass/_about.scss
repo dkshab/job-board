@@ -16,10 +16,52 @@
   }
   tr {
     border: 1px solid #ccc;
+    display: flex;
+    flex-flow: column wrap;
   }
   td {
-    display: flex;
-    flex-flow: row wrap;
-    padding: 0.5rem;
+    border: none;
+  }
+  td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 599px) {
+  .About {
+    table {
+    }
+    tr {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+}
+@media screen and (min-width: 950px) {
+  .About {
+    table {
+    }
+    td::before {
+      content: "";
+    }
+    thead tr {
+      position: static;
+    }
+    thead,
+    tbody {
+      display: table-row-group;
+    }
+    th,
+    td {
+      display: table-cell;
+      padding: 0.5em;
+    }
+    tr {
+      display: table-row;
+    }
+    table {
+      display: table;
+    }
   }
 }
