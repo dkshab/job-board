@@ -27,6 +27,24 @@
     content: attr(data-th) ": ";
     font-weight: bold;
   }
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .fas {
+      font-size: 1.1rem;
+    }
+    .fa-thumbs-up {
+      margin-right: 0.5rem;
+      color: green;
+    }
+    .fa-times {
+      color: red;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 @media screen and (min-width: 599px) {

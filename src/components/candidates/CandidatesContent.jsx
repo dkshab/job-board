@@ -11,7 +11,7 @@ const CandidatesContent = ({ showContent, jobId }) => {
   } else if (showContent === "short list") {
     return <ShortListedCandidates jobId={jobId} />;
   } else {
-    return <CandidatesList jobId={jobId} />;
+    return <ShortListedCandidates jobId={jobId} />;
   }
 };
 
