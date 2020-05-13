@@ -1,55 +1,91 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { UserContext } from "../providers/UserProvider";
 
 const About = () => {
+  const user = useContext(UserContext);
+  //console.log(user);
   return (
     <div className="About">
       <h3>Testing ground for now</h3>
-      <table className="rwd-table">
-        <thead>
-          <tr className="header-row">
-            <th scope="col">Supplier Code</th>
-            <th scope="col">Supplier Name</th>
-            <th scope="col">Invoice Number</th>
-            <th scope="col">Invoice Date</th>
-            <th scope="col">Due Date</th>
-            <th scope="col">Net Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-th="Supplier Code">UPS5005</td>
-            <td data-th="Supplier Name">UPS</td>
-            <td data-th="Invoice Number">ASDF19218</td>
-            <td data-th="Invoice Date">06/25/2016</td>
-            <td data-th="Due Date">12/25/2016</td>
-            <td data-th="Net Amount">$8,322.12</td>
-          </tr>
-          <tr>
-            <td data-th="Supplier Code">UPS3449</td>
-            <td data-th="Supplier Name">UPS South Inc.</td>
-            <td data-th="Invoice Number">ASDF29301</td>
-            <td data-th="Invoice Date">6/24/2016</td>
-            <td data-th="Due Date">12/25/2016</td>
-            <td data-th="Net Amount">$3,255.49</td>
-          </tr>
-          <tr>
-            <td data-th="Supplier Code">BOX5599</td>
-            <td data-th="Supplier Name">BOX Pro West</td>
-            <td data-th="Invoice Number">ASDF43000</td>
-            <td data-th="Invoice Date">6/27/2016</td>
-            <td data-th="Due Date">12/25/2016</td>
-            <td data-th="Net Amount">$45,255.49</td>
-          </tr>
-          <tr>
-            <td data-th="Supplier Code">PAN9999</td>
-            <td data-th="Supplier Name">Pan Providers and Co.</td>
-            <td data-th="Invoice Number">ASDF33433</td>
-            <td data-th="Invoice Date">6/29/2016</td>
-            <td data-th="Due Date">12/25/2016</td>
-            <td data-th="Net Amount">$12,335.69</td>
-          </tr>
-        </tbody>
-      </table>
+      {user && (
+        <div className="About--Profile">
+          <div className="Personal--Details">
+            <div className="avatar">
+              <span className="far fa-user"></span>
+              <p className="username">
+                {user.firstName} {user.surname}{" "}
+              </p>
+              <p className="job-title">{user.jobTitle0}</p>
+            </div>
+            <div className="info">
+              <p className="item">
+                <span className="fas fa-envelope"></span>
+                {user.email}
+              </p>{" "}
+              <p>
+                <span className="fas fa-map-marker-alt"></span>
+                {user.currentCity}
+              </p>{" "}
+              <p>
+                <span className="fas fa-briefcase"></span>
+                {user.jobStatus}
+              </p>{" "}
+              <p>
+                <span className="fas fa-users"></span>
+                {user.jobCategory}
+              </p>
+              <a href={user.resumeURL} className="button">
+                Download Resume
+              </a>
+            </div>
+          </div>
+          <div className="Background">
+            <div className="introduction">
+              <h3>Professional Summary</h3>
+              <p> {user.introduction}</p>
+            </div>
+            <div className="WrkExperience">
+              <h3>Work Experience</h3>
+              <div className="WrkExpDiv">
+                <div className="left">
+                  <h4> {user.jobTitle0}</h4>
+                  <p>
+                    <span className="fas fa-building"></span>
+                    {user.companyName0}
+                  </p>
+                  <p>{user.industry0}</p>
+                </div>
+                <div className="right">
+                  <p>
+                    {" "}
+                    <span className="fas fa-calendar"></span>
+                    {user.startDate0}/{user.endDate0}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="Education">
+              <h3>Education</h3>
+              <h4>{user.graduationInstitution0}</h4>
+              <p>{user.graduationYear0}</p>
+              <p>
+                {" "}
+                {user.qualification0} : {user.studyField0}
+              </p>{" "}
+            </div>
+            <div className="kills">
+              <h3> Skills</h3>
+              <div className="Skill1">
+                <p>
+                  <strong>{user.skillLevel0}</strong>{" "}
+                </p>
+                <p>{user.skillTitle0}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

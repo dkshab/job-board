@@ -25,7 +25,6 @@ const CandidatesList = ({ jobId }) => {
     const jobRef = firestore.doc(`jobs/${jobId}`);
 
     const applicationRef = jobRef.collection("applications").doc(applicantId);
-    const actionTest = "my TEst";
 
     if (action) {
       applicationRef.update({ action });

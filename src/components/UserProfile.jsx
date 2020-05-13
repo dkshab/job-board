@@ -67,7 +67,7 @@ const UserProfile = () => {
           <p>
             {user.startDate0}/{user.endDate0}
           </p>
-          <p>{user.companyName0}</p>
+          <p> {user.companyName0}</p>
           <p>{user.industry0}</p>{" "}
         </div>
       </div>

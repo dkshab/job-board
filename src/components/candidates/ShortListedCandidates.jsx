@@ -3,7 +3,7 @@ import { firestore } from "../../firebase";
 import { collectIdsAndDocs } from "../../utilities";
 
 const ShortListedCandidates = ({ jobId }) => {
-  console.log(jobId);
+  //console.log(jobId);
 
   const [shortListApplicants, setShortListApplications] = useState([]);
 
@@ -31,6 +31,7 @@ const ShortListedCandidates = ({ jobId }) => {
             <th scope="col">Current Role</th>
             <th scope="col">Current Employer</th>
             <th scope="col">City</th>
+            <th scope="col">Resume</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,15 @@ const ShortListedCandidates = ({ jobId }) => {
                 <td data-th="Current Role">{applicant.jobTitle0}</td>
                 <td data-th="Current Employer">{applicant.companyName0}</td>
                 <td data-th="City">{applicant.currentCity}</td>
+                <td data-th="Resume">
+                  <a
+                    href={applicant.resumeURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Link
+                  </a>
+                </td>
               </tr>
             ))}
         </tbody>

@@ -1,67 +1,99 @@
-.About {
-  /* Force table to not be like tables anymore */
-  table,
-  thead,
-  tbody,
-  th,
-  tr {
-    display: block;
-  }
+$dark-blue: #090773;
+$light-blue: #0313fc;
+$gray: #868e96;
+$light-gray: #f1f3f5;
+$extra-light-gray: #f8f9fa;
 
-  /* Hide table headers (but not display: none;, for accessibility -- sighted users will see labels below) */
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  tr {
-    border: 1px solid #ccc;
+.About--Profile {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  color: $dark-blue;
+  max-width: 1000px;
+  margin: 0 auto;
+  .Personal--Details {
+    background: #fff;
+    flex-basis: 30%;
+    box-shadow: 0 0.5rem 0.8rem #00000080;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .avatar {
+      text-align: center;
+    }
+    .fa-user {
+      font-size: 7rem;
+      color: black;
+    }
+    .username {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin: 0.75rem 0 0 0;
+    }
+    .job-title {
+      margin: 0;
+    }
+    .info {
+      p {
+        padding: 0.2rem;
+        border-bottom: 1px solid $light-gray;
+      }
+      .button {
+        background: $light-blue;
+      }
+      .fas {
+        color: gray;
+        margin: 0 0.5rem 0 0;
+      }
+    }
   }
-  td {
-    border: none;
-  }
-  td:before {
-    content: attr(data-th) ": ";
-    font-weight: bold;
+  .Background {
+    flex-basis: 69%;
+    padding: 1rem;
+    box-shadow: 0 0.5rem 0.8rem #00000080;
+    border-radius: 0.25rem;
+
+    .WrkExpDiv {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0 0.5rem 0;
+      border-bottom: 1px solid $gray;
+      .left {
+        h4 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1.1rem;
+        }
+        p {
+          margin: 0;
+          font-size: 0.8rem;
+          color: $gray;
+        }
+        .fas {
+          margin-right: 0.5rem;
+        }
+      }
+      .right {
+        .fas {
+          margin-right: 0.5rem;
+        }
+      }
+    }
   }
 }
 
-@media screen and (min-width: 599px) {
-  .About {
-    table {
+@media (max-width: 500px) {
+  .About--Profile {
+    .Personal--Details {
+      background: lightcoral;
+
+      flex-basis: 90%;
     }
-    tr {
-      display: flex;
-      flex-flow: row wrap;
-    }
-  }
-}
-@media screen and (min-width: 950px) {
-  .About {
-    table {
-    }
-    td::before {
-      content: "";
-    }
-    thead tr {
-      position: static;
-    }
-    thead,
-    tbody {
-      display: table-row-group;
-    }
-    th,
-    td {
-      display: table-cell;
-      padding: 0.5em;
-    }
-    tr {
-      display: table-row;
-    }
-    table {
-      display: table;
+    .Experience {
+      background: lightcyan;
+      flex-basis: 90%;
     }
   }
 }
