@@ -49,16 +49,18 @@ const About = () => {
               <h3>Work Experience</h3>
               <div className="WrkExpDiv">
                 <div className="left">
-                  <h4> {user.jobTitle0}</h4>
-                  <p>
+                  <p className="job-title"> {user.jobTitle0}</p>
+                  <p className="company-industry">
                     <span className="fas fa-building"></span>
                     {user.companyName0}
+                    <span className="fas fa-industry"></span>
+                    {user.industry0}
                   </p>
-                  <p>{user.industry0}</p>
+                  <p></p>
                 </div>
                 <div className="right">
-                  <p>
-                    {" "}
+                  <p className="work-type">Full Time</p>
+                  <p className="start-end">
                     <span className="fas fa-calendar"></span>
                     {user.startDate0}/{user.endDate0}
                   </p>
@@ -67,20 +69,28 @@ const About = () => {
             </div>
             <div className="Education">
               <h3>Education</h3>
-              <h4>{user.graduationInstitution0}</h4>
-              <p>{user.graduationYear0}</p>
-              <p>
-                {" "}
-                {user.qualification0} : {user.studyField0}
-              </p>{" "}
+              <div className="EduDiv">
+                <div className="left">
+                  <p className="qualification">
+                    {user.qualification0} : {user.studyField0}
+                  </p>
+                  <p>{user.graduationInstitution0}</p>
+                </div>
+                <div className="right">
+                  {" "}
+                  <p>
+                    {" "}
+                    <span className="fas fa-calendar"></span>{" "}
+                    {user.graduationYear0}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="kills">
+            <div className="Skills">
               <h3> Skills</h3>
-              <div className="Skill1">
-                <p>
-                  <strong>{user.skillLevel0}</strong>{" "}
-                </p>
-                <p>{user.skillTitle0}</p>
+              <div className="SkillsDiv">
+                <p className="Skill-title"> {user.skillTitle0}</p>
+                <p>Level : {user.skillLevel0}</p>
               </div>
             </div>
           </div>

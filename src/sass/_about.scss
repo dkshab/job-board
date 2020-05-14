@@ -55,30 +55,87 @@ $extra-light-gray: #f8f9fa;
     padding: 1rem;
     box-shadow: 0 0.5rem 0.8rem #00000080;
     border-radius: 0.25rem;
-
+    margin: 0 0 0 0;
     .WrkExpDiv {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0 0.5rem 0;
+      padding: 0 0 1.5rem 0;
       border-bottom: 1px solid $gray;
+
+      p {
+        margin: 0;
+      }
       .left {
-        h4 {
-          margin: 0 0 0.5rem 0;
-          font-size: 1.1rem;
+        .job-title {
+          font-size: 1.15rem;
+          margin: 0 0 0.25rem 0;
         }
-        p {
-          margin: 0;
-          font-size: 0.8rem;
+        .company-industry {
           color: $gray;
+          font-size: 0.75rem;
+          font-weight: bold;
         }
         .fas {
-          margin-right: 0.5rem;
+          margin-right: 0.25rem;
+        }
+        .fa-industry {
+          margin-left: 2rem;
         }
       }
       .right {
-        .fas {
-          margin-right: 0.5rem;
+        text-align: center;
+        .work-type {
+          padding: 0.25rem 0.5rem;
+          font-size: 0.75rem;
+          font-weight: bold;
+          background-color: lightgreen;
+          border-radius: 1rem;
+          text-align: center;
+          margin: 0 0 0.25rem 0;
         }
+        .start-end {
+          color: $gray;
+          font-size: 0.75rem;
+          font-weight: bold;
+          .fas {
+            margin-right: 0.25rem;
+          }
+        }
+      }
+    }
+    .EduDiv {
+      color: red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $gray;
+      padding: 0 0 1.5rem 0;
+      p {
+        margin: 0;
+        font-size: 0.75rem;
+        color: $gray;
+        font-weight: bold;
+      }
+
+      .qualification {
+        font-size: 1.15rem;
+        color: $dark-blue;
+        font-weight: 400;
+      }
+    }
+    .SkillsDiv {
+      border-bottom: 1px solid $gray;
+      padding: 0 0 1.5rem 0;
+      p {
+        color: $gray;
+        font-size: 0.75rem;
+        margin: 0;
+        font-weight: bold;
+      }
+      .Skill-title {
+        font-size: 1.15rem;
+        color: $dark-blue;
+        font-weight: 400;
       }
     }
   }
