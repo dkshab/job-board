@@ -35,6 +35,8 @@
 
 .item1,
 .item2,
+.flex label,
+.flex input,
 .field,
 .title,
 .Search--header,
@@ -84,10 +86,12 @@
   .field {
     --columns: 11;
   }
-  .item1 {
+  .item1,
+  .flex label {
     --width: 3;
   }
-  .item2 {
+  .item2,
+  .flex input {
     --width: 8;
   }
   .title {

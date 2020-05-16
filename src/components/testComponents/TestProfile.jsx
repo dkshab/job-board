@@ -6,53 +6,70 @@ import { UserContext } from "../../providers/UserProvider";
 import { firestore, storage } from "../../firebase";
 
 import useSetState from "../useSetState";
-import WrkExp from "./WrkExp";
+//import WrkExp from "./WrkExp";
 import NewEducation from "./NewEducation";
 import NewSkills from "./NewSkills";
 import NewLanguages from "./NewLanguages";
 
 import * as ROUTES from "../../constants/routes";
+import WrkExp from "./WrkExp";
 
 const initialState = {
   firstName: "",
   surname: "",
   email: "",
-  jobTitle: "",
-  companyName: "",
-  skillsTitle: "",
-  languageTitle: "",
 };
 
 const TestProfile = () => {
   const history = useHistory();
+  const user = useContext(UserContext);
+
   const [state, setState] = useSetState(initialState);
   const [loading, setLoading] = useState(true);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
 
   // Work experience
-  const blankWrkExp = { jobTitle: "" };
+  const blankWrkExp = { jobTitle: "", companyName: "" };
   const [wrkExpState, setWrkExpState] = useState([{ ...blankWrkExp }]);
 
   // Education
-  const blankEdu = { graduationYear: "" };
+  const blankEdu = { institution: "", graduationYear: "" };
   const [eduState, setEduState] = useState([{ ...blankEdu }]);
 
   // Skills
-  const blankSkill = { skillTitle: "" };
-  const [skillState, setSkillState] = useState([{ ...blankSkill }]);
+  const blankSkill = { skillTitle: "", skillLevel: "" };
+  const [skillsState, setSkillsState] = useState([{ ...blankSkill }]);
 
   // Languages
-  const blankLanguage = { languageTitle: "" };
+  const blankLanguage = { languageTitle: "", languageLevel: "" };
   const [languagesState, setLanguagesState] = useState([{ ...blankLanguage }]);
-
-  const user = useContext(UserContext);
 
   useEffect(() => {
     if (user && loading) {
       //console.log("We have a user!", user);
 
+      const { workExperience, education, skills, languages } = user;
+      //console.log(education);
+
+      if (workExperience) {
+        setWrkExpState(workExperience);
+      }
+
+      if (education) {
+        setEduState(education);
+      }
+
+      if (skills) {
+        setSkillsState(skills);
+      }
+
+      if (languages) {
+        setLanguagesState(languages);
+      }
+
       setState(user);
+
       setLoading(false);
     }
   }, [loading, setState, user]);
@@ -63,58 +80,74 @@ const TestProfile = () => {
     });
   };
 
+  // Adding new sections
+  const addWrkExp = (event) => {
+    event.preventDefault();
+
+    setWrkExpState([...wrkExpState, { ...blankWrkExp }]);
+  };
+
+  const addEducation = (event) => {
+    event.preventDefault();
+
+    setEduState([...eduState, { ...blankEdu }]);
+  };
+
+  const addSkill = (event) => {
+    event.preventDefault();
+
+    setSkillsState([...skillsState, { ...blankSkill }]);
+  };
+
+  const addLanguage = (event) => {
+    event.preventDefault();
+
+    setLanguagesState([...languagesState, { ...blankLanguage }]);
+  };
+
+  // Event handlers
+  const handleWrkChange = (event) => {
+    const updatedWrkExp = [...wrkExpState];
+
+    updatedWrkExp[event.target.dataset.index][event.target.className] =
+      event.target.value;
+
+    setWrkExpState(updatedWrkExp);
+  };
+
+  const handleEduChange = (event) => {
+    const updatedEduState = [...eduState];
+
+    updatedEduState[event.target.dataset.index][event.target.className] =
+      event.target.value;
+
+    setEduState(updatedEduState);
+  };
+
+  const handleSkillChange = (event) => {
+    const updatedSkillsState = [...skillsState];
+
+    updatedSkillsState[event.target.dataset.index][event.target.className] =
+      event.target.value;
+
+    setSkillsState(updatedSkillsState);
+  };
+
+  const handleLanguageChange = (event) => {
+    const updatedLanguageState = [...languagesState];
+
+    updatedLanguageState[event.target.dataset.index][event.target.className] =
+      event.target.value;
+
+    setLanguagesState(updatedLanguageState);
+  };
+
   const handleFileInput = (event) => {
     setFile(event.target.files[0]);
     setFilename(event.target.files[0].name);
   };
 
-  const addWrkExp = (event) => {
-    event.preventDefault();
-
-    let tempJob = {};
-    let testWrkExp = Object.keys(wrkExpState);
-    let countWrkExp = testWrkExp.length;
-
-    tempJob["jobTitle" + countWrkExp] = "";
-    setWrkExpState([...wrkExpState, { ...tempJob }]);
-  };
-
-  const addEdu = (event) => {
-    event.preventDefault();
-
-    const tempEdu = {};
-    const tempEduState = Object.keys(eduState);
-    const countEducation = tempEduState.length;
-
-    tempEdu["graduationYear" + countEducation] = "";
-
-    setEduState([...eduState, { ...tempEdu }]);
-  };
-
-  const addSkills = (event) => {
-    event.preventDefault();
-
-    const tempSkill = {};
-    const tempSkillState = Object.keys(skillState);
-    const countSkill = tempSkillState.length;
-
-    tempSkill["skillTitle" + countSkill] = "";
-
-    setSkillState([...skillState, { ...tempSkill }]);
-  };
-
-  const addLanguages = (event) => {
-    event.preventDefault();
-
-    const tempLang = {};
-    const tempLangState = Object.keys(languagesState);
-    const countLang = tempLangState.length;
-
-    tempLang["languageTitle" + countLang] = "";
-
-    setLanguagesState([...languagesState, { ...tempLang }]);
-  };
-
+  // Submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -122,6 +155,10 @@ const TestProfile = () => {
       const userRef = firestore.doc(`users/${user.uid}`);
 
       userRef.update(state);
+      userRef.update({ workExperience: wrkExpState });
+      userRef.update({ education: eduState });
+      userRef.update({ skills: skillsState });
+      userRef.update({ languages: languagesState });
 
       if (user.resumeURL) {
         let tempFileRef = storage.refFromURL(user.resumeURL);
@@ -140,17 +177,20 @@ const TestProfile = () => {
       }
 
       // Uploading new resume
-      storage
-        .ref()
-        .child("resumes")
-        .child(user.uid)
-        .child(filename)
-        .put(file)
-        .then((response) => response.ref.getDownloadURL())
-        .then((resumeURL) => userRef.update({ resumeURL }))
-        .then(() => {
-          console.log("Resume uploaded!");
-        });
+
+      if (file) {
+        storage
+          .ref()
+          .child("resumes")
+          .child(user.uid)
+          .child(filename)
+          .put(file)
+          .then((response) => response.ref.getDownloadURL())
+          .then((resumeURL) => userRef.update({ resumeURL }))
+          .then(() => {
+            console.log("Resume uploaded!");
+          });
+      }
 
       // Redirect to profile page
       history.push(ROUTES.PROFILE);
@@ -335,43 +375,54 @@ const TestProfile = () => {
             ></textarea>
           </div>
         </div>
-
         <div className="Profile--wrkExp">
           <h3>Work Experience</h3>
           <button onClick={addWrkExp}>Add</button>
-          <WrkExp
-            wrkExpState={wrkExpState}
-            handleChange={handleChange}
-            state={state}
-          />
-        </div>
 
+          {wrkExpState.map((val, index) => (
+            <WrkExp
+              key={`jobTitle-${index}`}
+              wrkExpState={wrkExpState}
+              index={index}
+              handleWrkChange={handleWrkChange}
+            />
+          ))}
+        </div>{" "}
         <div className="Profile--education">
           <h3>Education</h3>
-          <button onClick={addEdu}>Add</button>
-          <NewEducation
-            eduState={eduState}
-            handleChange={handleChange}
-            state={state}
-          />
-        </div>
+          <button onClick={addEducation}>Add</button>
+          {eduState.map((val, index) => (
+            <NewEducation
+              key={`education-${index}`}
+              index={index}
+              eduState={eduState}
+              handleEduChange={handleEduChange}
+            />
+          ))}
+        </div>{" "}
         <div className="Profile--skills">
           <h3>Skills</h3>
-          <button onClick={addSkills}>Add</button>
-          <NewSkills
-            skillState={skillState}
-            handleChange={handleChange}
-            state={state}
-          />
-        </div>
+          <button onClick={addSkill}>Add</button>
+          {skillsState.map((val, index) => (
+            <NewSkills
+              key={`skill-${index}`}
+              index={index}
+              skillsState={skillsState}
+              handleSkillChange={handleSkillChange}
+            />
+          ))}
+        </div>{" "}
         <div className="Profile--languages">
           <h3>Languages</h3>
-          <button onClick={addLanguages}>Add</button>
-          <NewLanguages
-            languagesState={languagesState}
-            handleChange={handleChange}
-            state={state}
-          />
+          <button onClick={addLanguage}>Add</button>
+          {languagesState.map((val, index) => (
+            <NewLanguages
+              key={`language-${index}`}
+              languagesState={languagesState}
+              index={index}
+              handleLanguageChange={handleLanguageChange}
+            />
+          ))}
         </div>
         <div className="Profile--desired-job">
           <h3>Desired Job Criteria</h3>

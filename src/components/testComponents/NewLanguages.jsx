@@ -1,41 +1,35 @@
 import React from "react";
 
-const NewLanguages = ({ languagesState, state, handleChange }) => {
-  // console.log(languagesState);
+const NewLanguages = ({ index, languagesState, handleLanguageChange }) => {
+  const languageId = `language-${index}`;
+  const languageLevelId = `languageLevel-${index}`;
 
   return (
-    <>
-      {languagesState.map((val, index) => {
-        return (
-          <div key={`language-${index}`} className="flex">
-            <label className="item1" htmlFor={`language${index}`}>
-              Language
-            </label>
-            <input
-              className="item2"
-              type="text"
-              name={`language${index}`}
-              value={state.name}
-              onChange={handleChange}
-            />
-            <label className="item1" htmlFor={`languageLevel${index}`}>
-              Level
-            </label>
-            <select
-              className="item2"
-              name={`languageLevel${index}`}
-              value={state.name}
-              onChange={handleChange}
-            >
-              <option defaultValue>Select one...</option>
-              <option value="Basic">Basic</option>
-              <option value="Medium">Medium</option>
-              <option value="Good">Good</option>
-            </select>
-          </div>
-        );
-      })}
-    </>
+    <div className="flex">
+      <label htmlFor={languageId}>{`Language #${index + 1}`}</label>
+      <input
+        className="languageTitle"
+        type="text"
+        data-index={index}
+        name={languageId}
+        value={languagesState[index].languageTitle}
+        onChange={handleLanguageChange}
+      />
+      <label htmlFor={languageLevelId}>Level</label>
+      <select
+        className="languageLevel"
+        name={languageLevelId}
+        data-index={index}
+        value={languagesState[index].languageLevel}
+        onChange={handleLanguageChange}
+      >
+        <option defaultValue>Select one...</option>
+        <option value="Basic">Basic</option>
+        <option value="Medium">Medium</option>
+        <option value="Good">Good</option>{" "}
+        <option value="Expert">Expert</option>
+      </select>
+    </div>
   );
 };
 

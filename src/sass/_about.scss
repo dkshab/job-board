@@ -108,7 +108,7 @@ $extra-light-gray: #f8f9fa;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid $light-gray;
       padding: 0 0 1.5rem 0;
       p {
         margin: 0;
@@ -124,7 +124,7 @@ $extra-light-gray: #f8f9fa;
       }
     }
     .SkillsDiv {
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid $light-gray;
       padding: 0 0 1.5rem 0;
       p {
         color: $gray;
@@ -133,6 +133,21 @@ $extra-light-gray: #f8f9fa;
         font-weight: bold;
       }
       .Skill-title {
+        font-size: 1.15rem;
+        color: $dark-blue;
+        font-weight: 400;
+      }
+    }
+    .LanguageDiv {
+      border-bottom: 1px solid $light-gray;
+      padding: 0 0 1.5rem 0;
+      p {
+        color: $gray;
+        font-size: 0.75rem;
+        margin: 0;
+        font-weight: bold;
+      }
+      .language-title {
         font-size: 1.15rem;
         color: $dark-blue;
         font-weight: 400;

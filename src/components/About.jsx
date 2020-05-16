@@ -93,6 +93,17 @@ const About = () => {
                 <p>Level : {user.skillLevel0}</p>
               </div>
             </div>
+            <div className="Languages">
+              <h3>Languages</h3>
+              <div className="LanguageDiv">
+                <p className="language-title">{user.language0}</p>
+                <p>Level : {user.languageLevel0}</p>
+              </div>
+            </div>
+            <div className="DesiredJob">
+              <h3>Desired Job Criteria</h3>
+              <div className="DesiredJobDiv"></div>
+            </div>
           </div>
         </div>
       )}
