@@ -10,14 +10,14 @@ import JobsList from "../../components/jobs/JobsList";
 import Search from "../../components/Search";
 import JobPage from "../../components/jobs/JobPage";
 import UserProfile from "../../components/UserProfile";
-//import UpdateProfile from "./UpdateProfile";
 import AddJob from "../../components/jobs/AddJob";
-import TestProfile from "../../components/testComponents/TestProfile";
+
 import ServicesAuth from "../../components/recruiters/ServicesAuth";
 import About from "../../components/About";
 import Account from "../../components/Account";
 import RecruiterJobPage from "../../components/recruiters/RecruiterJobPage";
 import Footer from "../../components/Footer";
+import UpdateProfile from "../../components/testComponents/UpdateProfile";
 
 const AuthApp = () => {
   return (
@@ -32,7 +32,7 @@ const AuthApp = () => {
           <Route exact path={ROUTES.SEARCH} component={Search} />
           <Route exact path={ROUTES.JOBPAGE} component={JobPage} />
           <Route exact path={ROUTES.PROFILE} component={UserProfile} />
-          <Route exact path={ROUTES.UPDATE_PROFILE} component={TestProfile} />
+          <Route exact path={ROUTES.UPDATE_PROFILE} component={UpdateProfile} />
           <Route exact path={ROUTES.RECRUITER_PAGE} component={ServicesAuth} />
           <Route exact path={ROUTES.ABOUT} component={About} />
           <Route exact path={ROUTES.ACCOUNT} component={Account} />

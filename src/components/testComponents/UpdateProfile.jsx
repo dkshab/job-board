@@ -20,7 +20,7 @@ const initialState = {
   email: "",
 };
 
-const TestProfile = () => {
+const UpdateProfile = () => {
   const history = useHistory();
   const user = useContext(UserContext);
 
@@ -30,7 +30,7 @@ const TestProfile = () => {
   const [filename, setFilename] = useState("Choose File");
 
   // Work experience
-  const blankWrkExp = { jobTitle: "", companyName: "" };
+  const blankWrkExp = { jobTitle: "", companyName: "", fieldOfStudy: "" };
   const [wrkExpState, setWrkExpState] = useState([{ ...blankWrkExp }]);
 
   // Education
@@ -442,8 +442,8 @@ const TestProfile = () => {
             </label>
             <select
               className="item2"
-              name="jobCategory"
-              value={state.jobCategory || ""}
+              name="desiredJobCategory"
+              value={state.desiredJobCategory || ""}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -458,8 +458,8 @@ const TestProfile = () => {
             </label>
             <select
               className="item2"
-              name="jobStatus"
-              value={state.jobStatus || ""}
+              name="desiredJobStatus"
+              value={state.desiredJobStatus || ""}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -467,13 +467,24 @@ const TestProfile = () => {
               <option value="Part Time">Part Time</option>
               <option value="Full Time">Full Time</option>
             </select>
+            <label className="item1" htmlFor="desiredJobLocation">
+              Job Location
+            </label>
+            <input
+              type="text"
+              name="desiredJobLocation"
+              className="item2"
+              value={state.desiredJobLocation || ""}
+              onChange={handleChange}
+            />
             <label className="item1" htmlFor="salaryRange">
               Salary Range
             </label>
+
             <select
               className="item2"
-              name="salaryRange"
-              value={state.salaryRange || ""}
+              name="desiredSalaryRange"
+              value={state.desiredSalaryRange || ""}
               onChange={handleChange}
             >
               <option defaultValue>Select one...</option>
@@ -539,10 +550,10 @@ const TestProfile = () => {
           />
         </div>
         <button>Submit</button>
-        {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
+        <pre>{JSON.stringify(state, null, 2)}</pre>
       </form>
     </>
   );
 };
 
-export default TestProfile;
+export default UpdateProfile;

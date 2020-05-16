@@ -3,6 +3,8 @@ import React from "react";
 const NewEducation = ({ index, eduState, handleEduChange }) => {
   const institutionId = `institution-${index}`;
   const graduationId = `graduation-${index}`;
+  const fieldOfStudyId = `fieldOfStudy-${index}`;
+  const qualificationId = `qualification-${index}`;
 
   return (
     <div className="flex">
@@ -22,6 +24,24 @@ const NewEducation = ({ index, eduState, handleEduChange }) => {
         data-index={index}
         className="graduationYear"
         value={eduState[index].graduationYear}
+        onChange={handleEduChange}
+      />
+      <label htmlFor={fieldOfStudyId}>Field of Study and subjects</label>
+      <input
+        type="text"
+        className="fieldOfStudy"
+        data-index={index}
+        name={fieldOfStudyId}
+        value={eduState[index].fieldOfStudy || ""}
+        onChange={handleEduChange}
+      />
+      <label htmlFor={qualificationId}>Qualification</label>
+      <input
+        type="text"
+        className="qualification"
+        data-index={index}
+        name={qualificationId}
+        value={eduState[index].qualification || ""}
         onChange={handleEduChange}
       />
     </div>

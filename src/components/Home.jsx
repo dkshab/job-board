@@ -1,7 +1,9 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory, Link } from "react-router-dom";
+import moment from "moment";
 
 import useSetState from "./useSetState";
+import { JobsContext } from "../providers/JobsProvider";
 
 const initialState = {
   query: "",
@@ -9,6 +11,8 @@ const initialState = {
 
 const Home = () => {
   const history = useHistory();
+  const jobs = useContext(JobsContext);
+
   const [queryState, setQueryState] = useSetState(initialState);
 
   const handleChange = (event) => {
@@ -27,17 +31,48 @@ const Home = () => {
   };
   return (
     <div className="Home">
-      <h1>Discover what's out there</h1>
-      <form className="flex-form" onSubmit={handleSubmit}>
-        <input
-          type="search"
-          name="query"
-          value={queryState.query}
-          onChange={handleChange}
-          required
-        />{" "}
-        <input type="submit" value="Search" />
-      </form>
+      <div className="Home--hero">
+        <h1>Your next best career move</h1>
+        <form className="flex-form" onSubmit={handleSubmit}>
+          <input
+            type="search"
+            name="query"
+            value={queryState.query}
+            onChange={handleChange}
+            required
+          />{" "}
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+      <div className="LatestJobs">
+        {jobs &&
+          jobs.map((job, index) => (
+            <div key={`Home--Job-${index}`} className="Home--Job">
+              <div className="left">
+                <p className="jobTitle"> {job.title}</p>
+                <div className="job-meta">
+                  <p>
+                    <span className="fas fa-briefcase"></span> {job.company}
+                  </p>
+                  <p>
+                    <span className="fas fa-map-marker-alt"></span>{" "}
+                    {job.location}
+                  </p>
+                </div>
+              </div>
+              <div className="right">
+                <p className="work-type">{job.type}</p>
+                <p>
+                  <span className="fas fa-calendar"></span>
+                  {moment(job.createdAt.toDate()).calendar()}
+                </p>
+              </div>
+            </div>
+          ))}
+        <p>
+          <Link>View All Jobs</Link>
+        </p>
+      </div>
     </div>
   );
 };
