@@ -1,15 +1,7 @@
-$dark-blue: #090773;
-$light-blue: #0313fc;
-$gray: #868e96;
-$light-gray: #f1f3f5;
-$extra-light-gray: #f8f9fa;
-
-.About {
+.SignInAndSignUp {
   width: 40vw;
   max-width: 400px;
   margin: 0 auto;
-  padding: 1rem;
-  border-radius: 0.2rem;
 
   .Tabs {
     display: flex;
@@ -33,7 +25,6 @@ $extra-light-gray: #f8f9fa;
       }
     }
   }
-
   .Tabs--panels {
     background-color: #fffffff6;
     box-shadow: 0 2rem 2rem #00000080;
@@ -43,5 +34,30 @@ $extra-light-gray: #f8f9fa;
     border-radius: 3px;
     overflow: hidden;
     padding: 20px;
+  }
+}
+
+.SignIn,
+.SignUp {
+  legend,
+  p,
+  label {
+    text-align: center;
+  }
+  input:not([type="radio"]):not([type="checkbox"]) {
+    width: 25vw;
+    max-width: 30vw;
+    margin: 0 auto;
+  }
+
+  .field + .field {
+    margin-top: 1rem;
+  }
+  .buttons {
+    margin: 0.5rem 0 0 0;
+    text-align: center;
+    button + button {
+      margin-left: 0.25rem;
+    }
   }
 }

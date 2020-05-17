@@ -39,29 +39,35 @@ class SignIn extends Component {
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>Sign In</legend>
-            <label htmlFor="email">Email</label>
-
-            <input
-              type="email"
-              id="email-signin"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password-signin"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-              required
-            />
-            <button className="signin" type="submit">
-              Sign In
-            </button>
-            <button onClick={signInWithGoogle}>Sign In With Google</button>
+            <div className="field">
+              {" "}
+              <label htmlFor="email">Email</label>{" "}
+              <input
+                type="email"
+                id="email-signin"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password-signin"
+                name="password"
+                value={password}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div className="buttons">
+              <button className="signin" type="submit">
+                Sign In
+              </button>
+              <button onClick={signInWithGoogle}>Sign In With Google</button>
+            </div>
           </fieldset>
         </form>
       </div>

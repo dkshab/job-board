@@ -1,8 +1,16 @@
+$dark-blue: #090773;
+$light-blue: #0313fc;
+$gray: #868e96;
+$light-gray: #f1f3f5;
+$extra-light-gray: #f8f9fa;
+
 .NavBar {
-  background-color: white;
+  background-color: inherit;
   display: flex;
   flex-flow: row nowrap;
   height: 10vh;
+  padding: 0 1rem 1rem 1rem;
+  border-bottom: 2px solid $light-gray;
 }
 
 .nav-toggle {
@@ -41,6 +49,7 @@
     min-height: 100%;
     width: 200px;
     background-color: #1a1a1a;
+    color: $dark-blue;
     li:first-child a {
       border-top: 1px solid #383838;
     }
@@ -52,6 +61,10 @@
       border-bottom: 1px solid #383838;
     }
   }
+  .sign-in {
+    font-weight: bold;
+  }
+
   .nav-close {
     position: absolute;
     right: 0;

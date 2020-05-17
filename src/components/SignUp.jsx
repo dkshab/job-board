@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { auth, createUserProfileDocument } from "../firebase";
 
+import * as ROUTES from "../constants/routes";
+import { withRouter } from "react-router-dom";
+
 class SignUp extends Component {
   state = { displayName: "", email: "", password: "" };
 
@@ -25,7 +28,9 @@ class SignUp extends Component {
     } catch (error) {
       console.error(error);
     }
-    this.setState({ displayName: "", email: "", password: "" });
+    this.setState({ displayName: "", email: "", password: "" }, () => {
+      this.props.history.push(ROUTES.HOME);
+    });
   };
 
   render() {
@@ -36,33 +41,44 @@ class SignUp extends Component {
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>Sign Up</legend>
-            <label htmlFor="displayName">Display name </label>
-            <input
-              type="text"
-              name="displayName"
-              id="displayName"
-              value={displayName}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-            <button className="signup" type="submit">
-              Sign Up
-            </button>
+
+            <div className="field">
+              {" "}
+              <label htmlFor="displayName">Display name </label>
+              <input
+                type="text"
+                name="displayName"
+                id="displayName"
+                value={displayName}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              {" "}
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="buttons">
+              <button className="signup" type="submit">
+                Sign Up
+              </button>
+            </div>
           </fieldset>
         </form>
       </div>
@@ -70,4 +86,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

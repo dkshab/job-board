@@ -32,25 +32,14 @@ const NavBarNonAuth = () => {
         </a>
         <ul className="NavBar--menu">
           <li className="item">
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
-          <li className="item">
-            <Link to={ROUTES.ABOUT}>About</Link>
-          </li>
-          <li className="item">
             <Link to={ROUTES.JOBS}>Jobs</Link>
           </li>
           <li className="item">
-            <Link to={ROUTES.LANDING}>Contact</Link>
-          </li>{" "}
-          <li className="item">
             <Link to={ROUTES.RECRUITER_PAGE_NON_AUTH}>Recruiters</Link>
+          </li>{" "}
+          <li className="item sign-in">
+            <Link to={ROUTES.SIGNIN}>Sign In</Link>
           </li>
-          &nbsp;
-          <li className="item button sign-up">
-            <Link to={ROUTES.SIGNIN}>Sign Up</Link>
-          </li>
-          &nbsp;&nbsp;
         </ul>
       </nav>
       {/* eslint-disable-next-line */}

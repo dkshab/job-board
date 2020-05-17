@@ -39,16 +39,7 @@ const NavBar = () => {
         </a>
         <ul className="NavBar--menu">
           <li className="item">
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
-          <li className="item">
-            <Link to={ROUTES.ABOUT}>About</Link>
-          </li>
-          <li className="item">
             <Link to={ROUTES.JOBS}>Jobs</Link>
-          </li>
-          <li className="item">
-            <Link to={ROUTES.LANDING}>Contact</Link>
           </li>
           {!isRecruiter && (
             <li className="item">
@@ -63,11 +54,11 @@ const NavBar = () => {
               <li className="item">
                 <Link to={ROUTES.RECRUITER_PAGE}>Recruiters</Link>
               </li>
+              <li className="item button post-job">
+                <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
+              </li>
             </>
           )}
-          <li className="item button post-job">
-            <Link to={ROUTES.ADD_JOB}>Post a Job</Link>
-          </li>
           &nbsp;
           <li className="item">
             <button onClick={signOut} className="button sign-out">

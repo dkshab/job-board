@@ -69,8 +69,8 @@ const Home = () => {
               </div>
             </div>
           ))}
-        <p>
-          <Link>View All Jobs</Link>
+        <p className="cta-alljobs">
+          <Link to="/jobs">View All {jobs.length} Jobs</Link>
         </p>
       </div>
     </div>

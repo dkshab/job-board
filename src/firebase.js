@@ -22,7 +22,7 @@ export const storage = firebase.storage();
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export const signOut = () => auth.signOut().then(window.location.reload(false));
+export const signOut = () => auth.signOut().then(window.location.replace("/"));
 
 export const createUserProfileDocument = async (user, additionalData) => {
   if (!user) return;

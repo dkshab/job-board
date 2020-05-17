@@ -11,6 +11,7 @@
 @import "_about";
 @import "_candidates";
 @import "_footer";
+@import "_signin";
 
 @mixin button($color) {
   background-color: $color;
@@ -36,6 +37,10 @@ body {
   line-height: 1.4;
   margin: 1rem;
   background-color: $extra-light-gray;
+}
+
+main {
+  margin: 2rem 0 3rem 0;
 }
 
 hr {
