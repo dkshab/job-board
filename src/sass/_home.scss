@@ -120,3 +120,62 @@ $extra-light-gray: #f8f9fa;
     text-align: center;
   }
 }
+
+.Home {
+  h3 {
+    text-align: center;
+  }
+  .Tabs {
+    width: 90vw;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Tabs--row {
+      .tab {
+        display: inline-block;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        margin: 0px 2px;
+        background: inherit;
+        border-radius: 3px 3px 0px 0px;
+        //box-shadow: 0 0.5rem 0.8rem #00000080;
+        font-weight: bold;
+        color: $dark-blue;
+        &.selected {
+          background: lightpink;
+          color: $dark-blue;
+          //border: 1px solid $dark-blue;
+        }
+        &:hover {
+          color: $light-blue;
+        }
+      }
+    }
+
+    .Tabs--panel {
+      background-color: #fffffff6;
+      box-shadow: 0 2rem 2rem #00000080;
+      min-height: 200px;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 20px;
+    }
+  }
+  .JobSort {
+    display: flex;
+    ul {
+      li {
+        list-style: none;
+        a {
+          text-decoration: none;
+          color: $dark-blue;
+        }
+      }
+    }
+    ul:last-child {
+      margin-right: 2rem;
+    }
+  }
+}

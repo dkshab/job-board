@@ -1,20 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import moment from "moment";
 
 import useSetState from "./useSetState";
 import { JobsContext } from "../providers/JobsProvider";
+import JobSort from "./jobs/JobSort";
 
 const initialState = {
   query: "",
 };
 
+const initialTabMenu = [
+  { id: 0, content: "Jobs by Category" },
+  { id: 1, content: "Jobs by City" },
+  { id: 2, content: "Jobs by Title" },
+];
+
 const Home = () => {
   const history = useHistory();
   const jobs = useContext(JobsContext);
 
+  // Tabs and their state handling
+  const [tabMenu, setTabMenu] = useState(initialTabMenu);
+  const [showContent, setShowContent] = useState("Jobs by Category");
+
+  const handleTabClick = (event) => {
+    const updatedTabMenu = tabMenu.map((item) => ({
+      ...item,
+      isActive: +event.target.id === item.id,
+    }));
+
+    // Changing Tab Content after clicking a tab
+    const tempShowContent = event.target.textContent;
+
+    setShowContent(tempShowContent);
+    setTabMenu(updatedTabMenu);
+  };
+
+  // Form state
   const [queryState, setQueryState] = useSetState(initialState);
 
+  // Onchange handle for search form
   const handleChange = (event) => {
     setQueryState({
       [event.target.name]: event.target.value,
@@ -24,9 +50,9 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // console.log(queryState);
     const { query } = queryState;
 
+    // redirect to search results page
     history.push(`search/${query}`);
   };
   return (
@@ -44,10 +70,10 @@ const Home = () => {
           <input type="submit" value="Search" />
         </form>
       </div>
-      <div className="LatestJobs">
+      {/* <div className="LatestJobs">
         {jobs &&
           jobs.map((job, index) => (
-            <div key={`Home--Job-${index}`} className="Home--Job">
+            <div key={job.id} className="Home--Job">
               <div className="left">
                 <p className="jobTitle"> {job.title}</p>
                 <div className="job-meta">
@@ -69,9 +95,27 @@ const Home = () => {
               </div>
             </div>
           ))}
-        <p className="cta-alljobs">
-          <Link to="/jobs">View All {jobs.length} Jobs</Link>
-        </p>
+      </div> */}
+      <div className="SortBy">
+        <h3>Sort By</h3>
+        <div className="Tabs">
+          <div className="Tabs--row">
+            {tabMenu.map((item, index) => (
+              <label
+                key={`tab-${index}`}
+                id={index}
+                htmlFor={item.content}
+                className={`tab ${item.isActive ? "selected" : ""}`}
+                onClick={handleTabClick}
+              >
+                {item.content}
+              </label>
+            ))}
+          </div>
+          <div className="Tabs--panel">
+            <JobSort showContent={showContent} />
+          </div>
+        </div>
       </div>
     </div>
   );

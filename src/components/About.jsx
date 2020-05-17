@@ -1,54 +1,125 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import moment from "moment";
 
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import { JobsContext } from "../providers/JobsProvider";
+import { Link } from "react-router-dom";
 
 const About = () => {
-  // Tabs and their state handling
-  const initialTabMenu = [
-    { id: 0, content: "Sign In" },
-    { id: 1, content: "Sign Up" },
-  ];
-
-  const [tabMenu, setTabMenu] = useState(initialTabMenu);
-
-  // Handling Tab content
-  const [showContent, setShowContent] = useState("Sign Up");
-
-  const handleTabClick = (event) => {
-    //console.log(typeof +event.target.id);
-    const updatedTabMenu = tabMenu.map((item) => ({
-      ...item,
-      isActive: +event.target.id === item.id,
-    }));
-
-    // Changing Tab Content after clicking a tab
-    const tempShowContent = event.target.textContent;
-
-    setShowContent(tempShowContent);
-    setTabMenu(updatedTabMenu);
-  };
-
+  const jobs = useContext(JobsContext);
   return (
     <div className="About">
-      <h3>Testing ground for now yes</h3>
-
-      <div className="Tabs">
-        <div className="Tabs--row">
-          {tabMenu.map((menu, index) => (
-            <label
-              key={index}
-              id={index}
-              className={`tab ${menu.isActive ? "selected" : ""}`}
-              onClick={handleTabClick}
-              htmlFor={menu.content}
-            >
-              {menu.content}
-            </label>
-          ))}
+      <div className="Hero">
+        <div className="Hero--inner">
+          {jobs && <h3> {jobs.length} Jobs found</h3>}
+          <form className="flex-form">
+            <input type="search" name="query" />
+            <input type="submit" value="Search" />
+          </form>
         </div>
-        <div className="Tabs--panels">
-          {showContent === "Sign In" ? <SignIn /> : <SignUp />}
+      </div>
+      <div className="SearchResults">
+        <aside>
+          <div className="City">
+            <p>Refine by City</p>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Johannesburg</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Durban</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Cape Town</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">East London</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Kimberley</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Bloemfontein</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Polokwane</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Nelspruit</label>
+            </div>
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Rustenburg</label>
+            </div>
+          </div>
+          <div className="Category">
+            <p>Refine by Category</p>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">IT & Telecommunications</label>
+            </div>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">
+                Banking, Finance, Insurance, Stockbroking{" "}
+              </label>
+            </div>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">
+                {" "}
+                Engineering, Technical, Production & Manufacturing
+              </label>
+            </div>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Accounting, Auditing</label>
+            </div>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">Sales & Purchasing</label>
+            </div>{" "}
+            <div className="checkField">
+              <input type="checkbox" />
+              <label htmlFor="todo">
+                FMCG, Retail, Wholesale & Supply Chain
+              </label>
+            </div>{" "}
+          </div>
+        </aside>
+        <div className="Results">
+          {jobs &&
+            jobs.map((job, index) => (
+              <div key={`Search--Job-${index}`} className="Search--Job">
+                <div className="left">
+                  <p className="jobTitle">
+                    <Link to={`jobs/${job.id}`}>{job.title}</Link>
+                  </p>
+                  <div className="job-meta">
+                    <p>
+                      <span className="fas fa-briefcase"></span> {job.company}
+                    </p>
+                    <p>
+                      <span className="fas fa-map-marker-alt"></span>{" "}
+                      {job.location}
+                    </p>
+                  </div>
+                </div>
+                <div className="right">
+                  <p className="work-type">{job.type}</p>
+                  <p>
+                    <span className="fas fa-calendar"></span>
+                    {moment(job.createdAt.toDate()).calendar()}
+                  </p>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>
