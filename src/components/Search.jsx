@@ -7,6 +7,8 @@ import {
   SearchBox,
   connectHits,
   RefinementList,
+  Pagination,
+  Configure,
 } from "react-instantsearch-dom";
 
 import Hits from "./search/Hits";
@@ -25,18 +27,30 @@ const Search = () => {
     <div className="Search">
       <>
         <InstantSearch searchClient={searchClient} indexName="jobs">
-          <div className="Search--header">
-            <SearchBox searchAsYouType={true} defaultRefinement={query} />
+          <Configure hitsPerPage={4} />
+          <div className="Hero">
+            <div className="Hero--inner">
+              <h3>7 Jobs Found</h3>
+              <SearchBox searchAsYouType={true} defaultRefinement={query} />
+            </div>
           </div>
-
-          <div className="Search--side">
-            Refinement Panel
-            <RefinementList attribute="location" operator="and" showMore />
+          <div className="MainContent">
+            <aside>
+              <div className="item">
+                <p>Refine by City</p>
+                <RefinementList attribute="location" operator="and" showMore />
+              </div>
+              <div className="item">
+                <p>Refine by Type</p>
+                <RefinementList attribute="type" operator="and" showMore />
+              </div>
+            </aside>
+            <div className="Results">
+              <CustomHits />
+            </div>
           </div>
-
-          <div className="Search--main">
-            {" "}
-            <CustomHits />
+          <div className="Pagination">
+            <Pagination />
           </div>
         </InstantSearch>
       </>

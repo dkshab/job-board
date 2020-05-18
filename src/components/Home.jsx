@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import moment from "moment";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import useSetState from "./useSetState";
-import { JobsContext } from "../providers/JobsProvider";
 import JobSort from "./jobs/JobSort";
 
 const initialState = {
@@ -18,7 +16,6 @@ const initialTabMenu = [
 
 const Home = () => {
   const history = useHistory();
-  const jobs = useContext(JobsContext);
 
   // Tabs and their state handling
   const [tabMenu, setTabMenu] = useState(initialTabMenu);

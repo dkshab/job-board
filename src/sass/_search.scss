@@ -1,69 +1,185 @@
 .Search {
-  .Search--header {
-    .ais-SearchBox {
-      padding: 0.5rem;
-      .ais-SearchBox-form {
-        display: flex;
-        justify-content: center;
+  .Hero {
+    height: 18vh;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    border-radius: 0.25rem;
+    background-color: $dark-blue;
+    color: #0a0a0b;
+    overflow: hidden;
 
-        button {
-          height: 2.75rem;
-          width: 3rem;
-          font: 2rem;
-        }
-        .ais-SearchBox-input {
-          color: blueviolet;
-          width: 20vw;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+    }
+    .ais-SearchBox-form {
+      display: flex;
+      justify-content: center;
+
+      padding: 0 0 0 0.5rem;
+      line-height: 3.2rem;
+      font-size: 1rem;
+      border-radius: 0;
+      outline: 0;
+      input[type="search"] {
+        flex-basis: 40vw;
+        width: 19rem;
+        border-radius: 0.2rem 0 0.2rem 0.2rem;
+      }
+      button {
+        color: #fff;
+        height: 2.75rem;
+        width: 4rem;
+
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .ais-SearchBox-submit {
+        background: #ef3f5a;
+        border: 1px solid #ef3f5a;
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
+      .ais-SearchBox-reset {
+        display: none;
+        background: #ef3f5a;
+        border: 1px solid #ef3f5a;
       }
     }
   }
-  .Search--side {
+
+  .MainContent {
+    width: 80vw;
+    margin: 0 auto;
+    padding: 1rem;
+    color: $dark-blue;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    aside {
+      flex-basis: 20%;
+      align-self: start;
+      // border: 1px dotted lightcoral;
+      padding: 0 0 1rem 0;
+      background: $white;
+      border-radius: 0.2rem;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+          font-weight: bold;
+        }
+
+        .ais-RefinementList {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          li {
+            list-style: none;
+          }
+          button {
+            //color: red;
+            //width: 8rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .Results {
+      flex-basis: 78%;
+    }
   }
 
-  .Search--main {
+  .Pagination {
+    text-align: center;
+    ul {
+      display: flex;
+
+      li {
+        margin-right: 1rem;
+        list-style-type: none;
+        font-size: 1.25rem;
+        font-family: inherit;
+        border-radius: 0.25rem;
+        background: lightcoral;
+        padding: 0.25rem 1rem;
+      }
+    }
   }
 }
 
 .SearchCard {
-  display: flex;
-  flex-direction: column;
-  width: 50vw;
-  max-width: 700px;
-  margin: 1rem auto;
-  border-radius: 3px;
-  box-shadow: 0 3px 7px -1px rgba(#000, 0.1);
-  // box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
-  line-height: 1.4;
-  font-family: sans-serif;
-  border-radius: 5px;
-  overflow: hidden;
+  background: #fff;
   padding: 1rem;
-  z-index: 0;
+  border-bottom: 1px solid $light-gray;
+  border-radius: 0.25rem;
+
   .SearchCard--Meta {
-    .details,
-    .details ul {
-      margin: auto;
-      padding: 0;
-      list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
     }
-    .details {
-      .author {
-        text-transform: uppercase;
+    .left {
+      p {
+        color: $gray;
+        font-size: 0.75rem;
+        font-weight: bold;
       }
-      li {
-        display: inline-block;
-        margin-right: 0.5em;
+      .jobTitle {
+        a {
+          font-size: 1rem;
+          font-weight: bold;
+          color: $dark-blue;
+          text-decoration: none;
+        }
+      }
+      .job-meta {
+        display: flex;
+        .fas {
+          color: $gray;
+          margin-right: 0.2rem;
+        }
+        .fa-map-marker-alt {
+          margin-left: 2rem;
+        }
       }
     }
-  }
-  .SearchCard--Description {
-    .apply {
-      text-align: right;
-      .far {
-        margin-left: 0.5rem;
-        font-size: 1rem;
+    .right {
+      text-align: center;
+      p {
+        color: $gray;
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+      .fas {
+        color: $gray;
+        margin-right: 0.2rem;
+      }
+      .work-type {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: $dark-blue;
+        background-color: lightgreen;
+        border-radius: 1rem;
+        text-align: center;
+        margin: 0 0 0.25rem 0;
       }
     }
   }

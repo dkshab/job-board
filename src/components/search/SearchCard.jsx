@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const SearchCard = ({
   location,
+
   title,
   type,
   company,
@@ -24,22 +25,30 @@ const SearchCard = ({
   return (
     <div className="SearchCard">
       <div className="SearchCard--Meta">
-        <ul className="details">
-          <li className="author">{recruiter.displayName}</li>
-          <li className="date">
-            <span className="fas fa-calendar-week">
-              {moment(currentDate).calendar()}
-            </span>
-          </li>
-        </ul>
+        <div className="left">
+          <p className="jobTitle">
+            <Link to={`/jobs/${objectID}`}>{title}</Link>
+          </p>
+          <div className="job-meta">
+            <p>
+              <span className="fas fa-briefcase"></span> {company}
+            </p>
+            <p>
+              <span className="fas fa-map-marker-alt"></span> {location}
+            </p>
+          </div>
+        </div>
+        <div className="right">
+          <p className="work-type">{type}</p>
+          <p>
+            <span className="fas fa-calendar"></span>
+            {moment(currentDate).calendar()}
+          </p>
+        </div>
       </div>
-      <div className="SearchCard--Description">
-        <h3>{title}</h3>
-        <p className="content">{content}</p>
-        <p className="apply">
-          <Link to={`jobs/${objectID}`}>Apply</Link>
-          <span className="far fa-heart"></span>
-        </p>
+
+      <div className="SearchCard--Content">
+        <p>{content}</p>
       </div>
     </div>
   );
