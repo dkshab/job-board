@@ -3,6 +3,7 @@ import React from "react";
 const WrkExp = ({ index, wrkExpState, handleWrkChange }) => {
   const wrkId = `jobTitle-${index}`;
   const companyId = `companyName-${index}`;
+  console.log(wrkExpState[index]);
   return (
     <div className="flex" key={`jobTitle-${index}`}>
       <label htmlFor={wrkId}>{`Job #${index + 1}`}</label>

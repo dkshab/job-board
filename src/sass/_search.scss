@@ -1,4 +1,9 @@
 .Search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   .Hero {
     height: 18vh;
     width: 100%;
@@ -115,8 +120,9 @@
         font-size: 1.25rem;
         font-family: inherit;
         border-radius: 0.25rem;
-        background: lightcoral;
+        background: white;
         padding: 0.25rem 1rem;
+        box-shadow: 2px 2px 1px gray;
       }
     }
   }

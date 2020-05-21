@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 
@@ -20,6 +20,32 @@ const initialState = {
   email: "",
 };
 
+const blankWrkExp = { jobTitle: "", companyName: "" };
+
+const WRK_EXPERIENCE_ADD = "EXPERIENCE_ADD";
+const LOAD_WRK_EXPERIENCE = "LOAD_WRK_EXPERIENCE";
+const HANDLE_WRK_EXP_CHANGE = "HANDLE_WRK_EXP_CHANGE";
+
+const reducer = (state, action) => {
+  if (action.type === WRK_EXPERIENCE_ADD) {
+    return [{ ...blankWrkExp }, ...state];
+  }
+
+  if (action.type === HANDLE_WRK_EXP_CHANGE) {
+    const updatedState = [...state];
+    updatedState[action.payload.index][action.payload.className] =
+      action.payload.value;
+
+    return [...updatedState];
+  }
+
+  if (action.type === LOAD_WRK_EXPERIENCE) {
+    return [...action.payload];
+  }
+
+  return state;
+};
+
 const UpdateProfile = () => {
   const history = useHistory();
   const user = useContext(UserContext);
@@ -30,8 +56,8 @@ const UpdateProfile = () => {
   const [filename, setFilename] = useState("Choose File");
 
   // Work experience
-  const blankWrkExp = { jobTitle: "", companyName: "", fieldOfStudy: "" };
-  const [wrkExpState, setWrkExpState] = useState([{ ...blankWrkExp }]);
+
+  const [wrkExpState, dispatch] = useReducer(reducer, [{ ...blankWrkExp }]);
 
   // Education
   const blankEdu = { institution: "", graduationYear: "" };
@@ -53,7 +79,13 @@ const UpdateProfile = () => {
       //console.log(education);
 
       if (workExperience) {
-        setWrkExpState(workExperience);
+        console.log("We have something", user.workExperience);
+        dispatch({
+          action: LOAD_WRK_EXPERIENCE,
+          payload: {
+            workExperience: workExperience,
+          },
+        });
       }
 
       if (education) {
@@ -84,7 +116,9 @@ const UpdateProfile = () => {
   const addWrkExp = (event) => {
     event.preventDefault();
 
-    setWrkExpState([...wrkExpState, { ...blankWrkExp }]);
+    dispatch({ type: WRK_EXPERIENCE_ADD });
+
+    // setWrkExpState([...wrkExpState, { ...blankWrkExp }]);
   };
 
   const addEducation = (event) => {
@@ -107,12 +141,20 @@ const UpdateProfile = () => {
 
   // Event handlers
   const handleWrkChange = (event) => {
-    const updatedWrkExp = [...wrkExpState];
+    // const updatedWrkExp = [...wrkExpState];
 
-    updatedWrkExp[event.target.dataset.index][event.target.className] =
-      event.target.value;
+    // updatedWrkExp[event.target.dataset.index][event.target.className] =
+    //   event.target.value;
+    dispatch({
+      type: HANDLE_WRK_EXP_CHANGE,
+      payload: {
+        index: event.target.dataset.index,
+        className: event.target.className,
+        value: event.target.value,
+      },
+    });
 
-    setWrkExpState(updatedWrkExp);
+    //setWrkExpState(updatedWrkExp);
   };
 
   const handleEduChange = (event) => {
@@ -154,43 +196,45 @@ const UpdateProfile = () => {
     if (user) {
       const userRef = firestore.doc(`users/${user.uid}`);
 
-      userRef.update(state);
-      userRef.update({ workExperience: wrkExpState });
-      userRef.update({ education: eduState });
-      userRef.update({ skills: skillsState });
-      userRef.update({ languages: languagesState });
+      console.log(wrkExpState);
 
-      if (user.resumeURL) {
-        let tempFileRef = storage.refFromURL(user.resumeURL);
-        // deleting existing resume
-        tempFileRef
-          .delete()
-          .then(() => {
-            console.log("File deleted!");
-            userRef.update({
-              resumeURL: firebase.firestore.FieldValue.delete(),
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+      // userRef.update(state);
+      // userRef.update({ workExperience: wrkExpState });
+      // userRef.update({ education: eduState });
+      // userRef.update({ skills: skillsState });
+      // userRef.update({ languages: languagesState });
 
-      // Uploading new resume
+      //   if (user.resumeURL) {
+      //     let tempFileRef = storage.refFromURL(user.resumeURL);
+      //     // deleting existing resume
+      //     tempFileRef
+      //       .delete()
+      //       .then(() => {
+      //         console.log("File deleted!");
+      //         userRef.update({
+      //           resumeURL: firebase.firestore.FieldValue.delete(),
+      //         });
+      //       })
+      //       .catch((error) => {
+      //         console.error(error);
+      //       });
+      //   }
 
-      if (file) {
-        storage
-          .ref()
-          .child("resumes")
-          .child(user.uid)
-          .child(filename)
-          .put(file)
-          .then((response) => response.ref.getDownloadURL())
-          .then((resumeURL) => userRef.update({ resumeURL }))
-          .then(() => {
-            console.log("Resume uploaded!");
-          });
-      }
+      //   // Uploading new resume
+
+      //   if (file) {
+      //     storage
+      //       .ref()
+      //       .child("resumes")
+      //       .child(user.uid)
+      //       .child(filename)
+      //       .put(file)
+      //       .then((response) => response.ref.getDownloadURL())
+      //       .then((resumeURL) => userRef.update({ resumeURL }))
+      //       .then(() => {
+      //         console.log("Resume uploaded!");
+      //       });
+      //   }
 
       // Redirect to profile page
       history.push(ROUTES.PROFILE);

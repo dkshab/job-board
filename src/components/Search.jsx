@@ -27,7 +27,7 @@ const Search = () => {
     <div className="Search">
       <>
         <InstantSearch searchClient={searchClient} indexName="jobs">
-          <Configure hitsPerPage={4} />
+          <Configure hitsPerPage={6} />
           <div className="Hero">
             <div className="Hero--inner">
               <h3>7 Jobs Found</h3>
