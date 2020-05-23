@@ -5,9 +5,11 @@ import { storage } from "../firebase";
 import { UserContext } from "../providers/UserProvider";
 
 import * as ROUTES from "../constants/routes";
+import Spinner from "./Spinner";
 
 const UserProfile = () => {
   const [resumeName, setResumeName] = useState("");
+  const [loading, setLoading] = useState(true);
   const user = useContext(UserContext);
 
   useEffect(() => {
@@ -24,12 +26,15 @@ const UserProfile = () => {
             console.log(error);
           });
       }
+      setLoading(false);
     }
   }, [user]);
 
   return (
     <div className="UserProfile">
-      {user && (
+      {loading ? (
+        <Spinner />
+      ) : (
         <>
           <div className="Personal--Details">
             <div className="avatar">
