@@ -1,7 +1,7 @@
 import React, { Component, createContext } from "react";
 
-import { firestore } from "../firebase";
-import { collectIdsAndDocs } from "../utilities";
+import { firestore } from "../utilities/firebase";
+import { collectIdsAndDocs } from "../utilities/firebaseDocs";
 
 export const JobsContext = createContext();
 

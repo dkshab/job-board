@@ -1,3 +1,28 @@
+.AddJob {
+  width: 50vw;
+  margin: 0 auto;
+
+  .AddJob--Form {
+    text-align: center;
+
+    input:not([type="radio"]):not([type="checkbox"]),
+    textarea {
+      width: 20rem;
+      font-size: 1.25rem;
+    }
+    select {
+      width: 20rem;
+    }
+    .field {
+      margin-bottom: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
 .Job {
   display: flex;
   flex-direction: column;
@@ -73,9 +98,4 @@
       }
     }
   }
-}
-
-.AddJob {
-  width: 50vw;
-  margin: 0 auto;
 }

@@ -81,6 +81,17 @@
 }
 
 .RecruiterJobPage {
+  .RedirectToDashboard {
+    a {
+      text-decoration: none;
+      color: $gray;
+      font-weight: 600;
+      &:hover {
+        color: $dark-blue;
+        font-weight: normal;
+      }
+    }
+  }
   .Tabs {
     display: flex;
     flex-direction: column;

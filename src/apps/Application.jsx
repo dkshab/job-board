@@ -4,7 +4,7 @@ import { UserContext } from "../providers/UserProvider";
 
 import "../sass/styles.scss";
 
-import Spinner from "../components/Spinner";
+import Spinner from "../sharedComponents/Spinner";
 
 const AuthenticatedApp = React.lazy(() => import("./AuthApp/AuthApp"));
 const NonAuthenticatedApp = React.lazy(() => import("./NonAuthApp/NonAuthApp"));

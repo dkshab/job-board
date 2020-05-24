@@ -30,6 +30,7 @@
     justify-content: space-between;
     padding: 0 1rem;
     background-color: #648ca6;
+    border-radius: 0 0.2rem 0.2rem 0;
     .header__search {
       margin-left: 2rem;
     }
@@ -39,6 +40,7 @@
     grid-area: sidenav;
     display: flex;
     flex-direction: column;
+    border-radius: 0.2rem 0 0 0.2rem;
     height: 100%;
     width: 240px;
     position: fixed;
@@ -68,6 +70,9 @@
   .sidenav__list-item {
     padding: 20px 20px 20px 40px;
     color: #ddd;
+    span {
+      margin-right: 0.5rem;
+    }
   }
   .sidenav__list-item:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -84,6 +89,20 @@
       height: 150px;
       background-color: #e3e4e6;
       color: slategray;
+      border-radius: 0.2rem;
+      .main-header__heading {
+        font-size: 1.25rem;
+        color: $dark-blue;
+        span {
+          color: $dark-blue;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        p {
+          font-size: 1rem;
+          margin: 0.5rem 0 0 0;
+        }
+      }
     }
 
     .main-cards {
@@ -99,6 +118,7 @@
     justify-content: space-between;
     padding: 0 1rem;
     background-color: #648ca6;
+    border-radius: 0 0.2rem 0.2rem 0;
   }
 }
 

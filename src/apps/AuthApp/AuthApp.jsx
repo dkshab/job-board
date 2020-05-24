@@ -3,21 +3,18 @@ import { Route } from "react-router-dom";
 
 import * as ROUTES from "../../constants/routes";
 
-import SignInAndSignUp from "../../components/SignInAndSignUp";
-import NavBarAuth from "./NavBarAuth";
-import Home from "../../components/Home";
-import JobsList from "../../components/jobs/JobsList";
-import Search from "../../components/Search";
-import JobPage from "../../components/jobs/JobPage";
-import UserProfile from "../../components/UserProfile";
-import AddJob from "../../components/jobs/AddJob";
-
-import ServicesAuth from "../../components/recruiters/ServicesAuth";
-import About from "../../components/About";
-import Account from "../../components/Account";
-import RecruiterJobPage from "../../components/recruiters/RecruiterJobPage";
-import Footer from "../../components/Footer";
-import UpdateProfile from "../../components/testComponents/UpdateProfile";
+import NavBarAuth from "./staticComponents/NavBarAuth";
+import Home from "../../sharedComponents/Home";
+import Footer from "../../sharedComponents/Footer";
+import JobsList from "./interaction/candidates/JobsList";
+import AddJob from "./interaction/recruiters/AddJob";
+import Search from "../../sharedComponents/search/Search";
+import JobPage from "./interaction/candidates/JobPage";
+import UserProfile from "./interaction/candidates/UserProfile";
+import UpdateProfile from "./interaction/candidates/UpdateProfile";
+import ServicesAuth from "./interaction/recruiters/ServicesAuth";
+import About from "../../sharedComponents/About";
+import RecruiterJobPage from "./interaction/recruiters/RecruiterJobPage";
 
 const AuthApp = () => {
   return (
@@ -26,7 +23,6 @@ const AuthApp = () => {
         <NavBarAuth />
         <main className="main">
           <Route exact path={ROUTES.HOME} component={Home} />
-          <Route exact path={ROUTES.SIGNIN} component={SignInAndSignUp} />
           <Route exact path={ROUTES.JOBS} component={JobsList} />
           <Route exact path={ROUTES.ADD_JOB} component={AddJob} />
           <Route exact path={ROUTES.SEARCH} component={Search} />
@@ -35,7 +31,6 @@ const AuthApp = () => {
           <Route exact path={ROUTES.UPDATE_PROFILE} component={UpdateProfile} />
           <Route exact path={ROUTES.RECRUITER_PAGE} component={ServicesAuth} />
           <Route exact path={ROUTES.ABOUT} component={About} />
-          <Route exact path={ROUTES.ACCOUNT} component={Account} />
           <Route
             exact
             path={ROUTES.RECRUITER_JOBPAGE}
