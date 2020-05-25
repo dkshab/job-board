@@ -63,7 +63,7 @@ const Home = () => {
             value={queryState.query}
             onChange={handleChange}
             required
-          />{" "}
+          />
           <input type="submit" value="Search" />
         </form>
       </div>
@@ -96,7 +96,7 @@ const Home = () => {
       <div className="SortBy">
         <h3>Sort By</h3>
         <div className="Tabs">
-          <div className="Tabs--row">
+          <div className="Tabs--row" data-testid="tabs">
             {tabMenu.map((item, index) => (
               <label
                 key={`tab-${index}`}
