@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import Modal from "../../../../sharedComponents/Modal";
+import Modal from "../../staticComponents/Modal";
 import withUser from "../../../../providers/withUser";
 import { auth, storage, firestore } from "../../../../utilities/firebase";
 

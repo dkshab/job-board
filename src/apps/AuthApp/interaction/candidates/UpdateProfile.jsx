@@ -6,8 +6,7 @@ import { UserContext } from "../../../../providers/UserProvider";
 import { firestore, storage } from "../../../../utilities/firebase";
 
 import * as ROUTES from "../../../../constants/routes";
-
-import Spinner from "../../../../sharedComponents/Spinner";
+import Spinner from "../../staticComponents/SpinnerAuth";
 
 const initialState = {
   firstName: "",

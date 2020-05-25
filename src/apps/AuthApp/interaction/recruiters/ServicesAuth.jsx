@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
 
 import * as ROUTES from "../../../../constants/routes";
+
 import { UserContext } from "../../../../providers/UserProvider";
-import Services from "../../../../sharedComponents/Services";
+import Services from "../../staticComponents/Services";
 
 const ServicesAuth = () => {
   const user = useContext(UserContext);

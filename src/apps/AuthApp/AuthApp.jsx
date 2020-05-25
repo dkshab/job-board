@@ -4,8 +4,8 @@ import { Route } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
 import NavBarAuth from "./staticComponents/NavBarAuth";
-import Home from "../../sharedComponents/Home";
-import Footer from "../../sharedComponents/Footer";
+import Home from "./staticComponents/Home";
+import Footer from "./staticComponents/Footer";
 import JobsList from "./interaction/candidates/JobsList";
 import AddJob from "./interaction/recruiters/AddJob";
 import Search from "../../sharedComponents/search/Search";
@@ -13,7 +13,7 @@ import JobPage from "./interaction/candidates/JobPage";
 import UserProfile from "./interaction/candidates/UserProfile";
 import UpdateProfile from "./interaction/candidates/UpdateProfile";
 import ServicesAuth from "./interaction/recruiters/ServicesAuth";
-import About from "../../sharedComponents/About";
+import About from "./staticComponents/About";
 import RecruiterJobPage from "./interaction/recruiters/RecruiterJobPage";
 
 const AuthApp = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import useSetState from "../utilities/useSetState";
+import useSetState from "../../../utilities/useSetState";
 import JobSort from "./JobSort";
 
 const initialState = {

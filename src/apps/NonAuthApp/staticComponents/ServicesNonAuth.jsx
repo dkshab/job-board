@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import * as ROUTES from "../constants/routes";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../../providers/UserProvider";
 
-const Services = () => {
+const ServicesNonAuth = () => {
   const user = useContext(UserContext);
   const history = useHistory();
 
@@ -156,4 +156,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesNonAuth;

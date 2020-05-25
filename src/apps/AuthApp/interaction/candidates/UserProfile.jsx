@@ -5,7 +5,7 @@ import { storage } from "../../../../utilities/firebase";
 import { UserContext } from "../../../../providers/UserProvider";
 
 import * as ROUTES from "../../../../constants/routes";
-import Spinner from "../../../../sharedComponents/Spinner";
+import Spinner from "../../staticComponents/SpinnerAuth";
 
 const UserProfile = () => {
   const [resumeName, setResumeName] = useState("");

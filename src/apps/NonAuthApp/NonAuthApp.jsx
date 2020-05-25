@@ -4,13 +4,14 @@ import { Route } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
 import NavBarNonAuth from "./staticComponents/NavBarNonAuth";
-import Footer from "../../sharedComponents/Footer";
-import Home from "../../sharedComponents/Home";
-import About from "../../sharedComponents/About";
+
 import SignInAndSignUp from "./interaction/candidates/SignInAndSignUp";
-import ServicesNonAuth from "./interaction/recruiters/ServicesNonAuth";
+
 import SignInRecruiters from "./interaction/recruiters/SignInRecruiters";
 import SignUpRecruiters from "./interaction/recruiters/SignUpRecruiters";
+import AboutNonAuth from "./staticComponents/AboutNonAuth";
+import FooterNonAuth from "./staticComponents/FooterNonAuth";
+import HomeNonAuth from "./staticComponents/HomeNonAuth";
 
 const AuthApp = () => {
   return (
@@ -18,14 +19,10 @@ const AuthApp = () => {
       <div className="wrapper">
         <NavBarNonAuth />
         <main className="main">
-          <Route exact path={ROUTES.HOME} component={Home} />
+          <Route exact path={ROUTES.HOME} component={HomeNonAuth} />
           <Route exact path={ROUTES.SIGNIN} component={SignInAndSignUp} />
-          <Route exact path={ROUTES.ABOUT} component={About} />
-          <Route
-            exact
-            path={ROUTES.RECRUITER_PAGE_NON_AUTH}
-            component={ServicesNonAuth}
-          />
+          <Route exact path={ROUTES.ABOUT} component={AboutNonAuth} />
+
           <Route
             exact
             path={ROUTES.RECRUITER_SIGNIN}
@@ -38,7 +35,7 @@ const AuthApp = () => {
           />
         </main>
         <footer className="footer">
-          <Footer />
+          <FooterNonAuth />
         </footer>
       </div>
     </div>
